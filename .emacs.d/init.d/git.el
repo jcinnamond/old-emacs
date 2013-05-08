@@ -2,5 +2,9 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 (jc-ensure-package 'git-gutter)
-;; Can't install git-gutter-fringe as it depends on fringe-helper and there is
-;; no package for that :-(
+(require 'git-gutter)
+;; Setting git gutter mode globally conflicts with magit.
+(global-set-key (kbd "C-c g") 'git-gutter-mode)
+
+(jc-ensure-package 'git-gutter-fringe)
+(require 'git-gutter-fringe)
