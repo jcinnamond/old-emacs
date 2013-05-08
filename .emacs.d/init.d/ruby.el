@@ -4,6 +4,7 @@
 (jc-ensure-package 'rbenv)
 (require 'rbenv)
 (rbenv-use-global)
+(global-rbenv-mode)
 
 ;; Add support for IRB in a buffer
 (jc-ensure-package 'inf-ruby)
