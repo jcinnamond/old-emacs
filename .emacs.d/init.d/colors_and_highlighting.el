@@ -27,3 +27,7 @@
 (jc-ensure-package 'highlight-parentheses)
 (require 'highlight-parentheses)
 (highlight-parentheses-mode 1)
+
+;; Highlight non-ascii characters
+(global-hi-lock-mode 1)
+(highlight-regexp "[^[:ascii:]]" 'hi-yellow)
