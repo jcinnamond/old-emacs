@@ -1,3 +1,4 @@
+(jc-ensure-package 'ruby-mode)
 (require 'ruby-mode)
 
 ;; Rbenv support
@@ -14,6 +15,12 @@
 (jc-ensure-package 'rspec-mode)
 (require 'rspec-mode)
 (setq rspec-use-rake-flag nil)
+
+;; Better electric completion for ruby
+(jc-ensure-package 'ruby-electric)
+
+;; Helpers for converting string -> symbol
+(jc-ensure-package 'ruby-tools)
 
 (defun flymake-ruby-init ()
   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
@@ -35,6 +42,7 @@
 	     ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
 	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
 		 (flymake-mode t))
+	     (ruby-electric-mode t)
 	     ))
 
 
