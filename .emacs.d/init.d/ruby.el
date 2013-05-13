@@ -1,5 +1,8 @@
-(jc-ensure-package 'ruby-mode)
-(require 'ruby-mode)
+;; Enhanced ruby mode pretty much replaces the need for flymake
+(jc-ensure-package 'enh-ruby-mode)
+(autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
 ;; Rbenv support
 (jc-ensure-package 'rbenv)
@@ -16,35 +19,15 @@
 (require 'rspec-mode)
 (setq rspec-use-rake-flag nil)
 
-;; Better electric completion for ruby
-(jc-ensure-package 'ruby-electric)
+;; Load rspec mode with enhanced-ruby-mode
+(add-hook 'enh-ruby-mode-hook (lambda ()
+				(if (rspec-buffer-is-spec-p)
+				    (rspec-mode)
+				  (rspec-verifiable-mode))
+				))
 
 ;; Helpers for converting string -> symbol
 (jc-ensure-package 'ruby-tools)
-
-(defun flymake-ruby-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-	 (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list "ruby" (list "-wc" local-file))))
-
-(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '(".+\\.rake$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
-
-(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
-
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-
-	     ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
-	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-		 (flymake-mode t))
-	     (ruby-electric-mode t)
-	     ))
-
 
 ;; Taken from http://blog.senny.ch/blog/2012/10/06/emacs-tidbits-for-ruby-developers/
 (defun senny-ruby-open-spec-other-buffer ()
@@ -57,6 +40,7 @@
       (switch-to-buffer source-buffer)
       (pop-to-buffer other-buffer))))
 
-(eval-after-load 'ruby-mode
-  '(progn
-     (define-key ruby-mode-map (kbd "C-c , ,") 'senny-ruby-open-spec-other-buffer)))
+;; Load rspec mode with enhanced-ruby-mode
+(add-hook 'enh-ruby-mode-hook (lambda ()
+				(define-key ruby-mode-map (kbd "C-c , ,") 'senny-ruby-open-spec-other-buffer)
+				))
