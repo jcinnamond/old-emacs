@@ -28,6 +28,7 @@
 
 ;; Helpers for converting string -> symbol
 (jc-ensure-package 'ruby-tools)
+(add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
 
 ;; Taken from http://blog.senny.ch/blog/2012/10/06/emacs-tidbits-for-ruby-developers/
 (defun senny-ruby-open-spec-other-buffer ()
@@ -42,5 +43,5 @@
 
 ;; Load rspec mode with enhanced-ruby-mode
 (add-hook 'enh-ruby-mode-hook (lambda ()
-				(define-key ruby-mode-map (kbd "C-c , ,") 'senny-ruby-open-spec-other-buffer)
+				(define-key enh-ruby-mode-map (kbd "C-c , ,") 'senny-ruby-open-spec-other-buffer)
 				))
