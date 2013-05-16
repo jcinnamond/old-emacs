@@ -45,3 +45,12 @@
 (add-hook 'enh-ruby-mode-hook (lambda ()
 				(define-key enh-ruby-mode-map (kbd "C-c , ,") 'senny-ruby-open-spec-other-buffer)
 				))
+
+;; Use outline mode for basic code folding
+(add-hook 'enh-ruby-mode-hook (lambda()
+				(outline-minor-mode)
+				(setq outline-regexp " *\\(def \\|class\\|module\\)")
+				(define-key enh-ruby-mode-map (kbd "C-c C-f") 'hide-leaves)
+				(define-key enh-ruby-mode-map (kbd "C-c f") 'show-subtree)
+				(define-key enh-ruby-mode-map (kbd "C-c h") 'hide-body)
+				(define-key enh-ruby-mode-map (kbd "C-c s") 'show-all)))
