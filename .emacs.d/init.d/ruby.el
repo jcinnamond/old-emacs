@@ -54,3 +54,7 @@
 				(define-key enh-ruby-mode-map (kbd "C-c f") 'show-subtree)
 				(define-key enh-ruby-mode-map (kbd "C-c h") 'hide-body)
 				(define-key enh-ruby-mode-map (kbd "C-c s") 'show-all)))
+
+;; Basic code folding for rspec
+(add-hook 'rspec-mode-hook (lambda()
+				(setq outline-regexp " *\\(def \\|it \\|describe \\|context \\)")))
