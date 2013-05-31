@@ -24,8 +24,12 @@
 ;; Test unit support - bleugh
 (jc-ensure-package 'ruby-test-mode)
 (require 'ruby-test-mode)
-(add-to-list 'auto-mode-alist '("_test\\.rb" . ruby-test-mode))
 (setq ruby-test-ruby-executables '("ruby" "ruby1.9"))
+(add-hook 'ruby-test-mode-hook (lambda()
+				 (setq outline-regexp " *\\(def \\|test \\|context \\)")))
+(add-hook 'enh-ruby-mode-hook (lambda()
+				(if (string-match "_test\.rb$" buffer-file-name)
+				    (ruby-test-mode))))
 
 ;; Rspec support - DISABLED while I use test unit :-(
 (jc-ensure-package 'rspec-mode)
