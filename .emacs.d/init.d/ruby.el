@@ -2,6 +2,7 @@
 (jc-ensure-package 'enh-ruby-mode)
 (autoload 'enh-ruby-mode "enh-ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile" . enh-ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 
 ;; Rbenv support
@@ -13,6 +14,12 @@
 ;; Add support for IRB in a buffer
 (jc-ensure-package 'inf-ruby)
 (require 'inf-ruby)
+
+(setq enh-ruby-deep-indent-paren nil)
+
+;; YAML support
+(jc-ensure-package 'yaml-mode)
+(require 'yaml-mode)
 
 ;; Rspec support
 (jc-ensure-package 'rspec-mode)
@@ -29,6 +36,9 @@
 ;; Helpers for converting string -> symbol
 (jc-ensure-package 'ruby-tools)
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
+
+;; Highlight matching parentheses
+(add-hook 'enh-ruby-mode-hook 'highlight-parentheses-mode)
 
 ;; Taken from http://blog.senny.ch/blog/2012/10/06/emacs-tidbits-for-ruby-developers/
 (defun senny-ruby-open-spec-other-buffer ()
