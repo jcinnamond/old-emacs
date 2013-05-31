@@ -10,6 +10,9 @@
 ;; No need for backup files as everything important is in git.
 (setq make-backup-files nil)
 
+;; Don't create lockfiles in the current directory
+(setq create-lockfiles nil)
+
 ;; Don't go 'beep' on the train!
 (setq ring-bell-function 'ignore)
 
