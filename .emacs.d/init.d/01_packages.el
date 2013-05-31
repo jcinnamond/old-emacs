@@ -5,9 +5,8 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-;; (package-refresh-contents)
-
 (defun jc-ensure-package (packageName)
   "Install a package if it is not already installed"
   (when (not (package-installed-p packageName))
-    (package-install packageName)))
+      (package-refresh-contents)
+      (package-install packageName)))
