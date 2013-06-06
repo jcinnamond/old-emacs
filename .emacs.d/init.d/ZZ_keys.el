@@ -11,3 +11,6 @@
 
 ;; Automatically indent
 (global-set-key (kbd "RET") 'newline-and-indent)
+
+;; Use s-s to search the project (using ag)
+(global-set-key (kbd "s-s") 'ag-project)
