@@ -1,7 +1,7 @@
 ;; Strip back the UI
 (setq inhibit-startup-message t)
 (tool-bar-mode 0)
-(menu-bar-mode 1)
+(menu-bar-mode 0)
 (scroll-bar-mode 0)
 
 ;; Don't jump around when scrolling
@@ -30,3 +30,9 @@
 ;; Electric!
 (electric-pair-mode t)
 (electric-indent-mode t)
+
+;; Don't open a new frame for ediff
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Start server
+(server-start)
