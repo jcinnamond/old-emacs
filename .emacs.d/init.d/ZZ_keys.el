@@ -14,3 +14,7 @@
 
 ;; Use s-s to search the project (using ag)
 (global-set-key (kbd "s-s") 'ag-project)
+
+;; Stupid mac os-x uk keyboard # problems with emacsclient
+(global-set-key (kbd "C-c 0") 'server-edit)
+(global-set-key (kbd "C-c w") 'delete-frame)
