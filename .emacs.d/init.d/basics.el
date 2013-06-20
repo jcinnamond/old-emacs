@@ -34,5 +34,8 @@
 ;; Don't open a new frame for ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; Always open ediff with a vertical split
+(set-variable 'ediff-split-window-function 'split-window-horizontally)
+
 ;; Start server
 (server-start)
