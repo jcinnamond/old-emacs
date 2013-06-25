@@ -47,7 +47,9 @@
 ;; Helpers for converting string -> symbol
 (jc-ensure-package 'ruby-tools)
 (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
+(ruby-tools-mode 1)
 (define-key ruby-tools-mode-map (kbd "C-;") nil)
+(ruby-tools-mode 0)
 
 ;; Highlight matching parentheses
 (add-hook 'enh-ruby-mode-hook 'highlight-parentheses-mode)
