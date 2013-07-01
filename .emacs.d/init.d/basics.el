@@ -37,5 +37,9 @@
 ;; Always open ediff with a vertical split
 (set-variable 'ediff-split-window-function 'split-window-horizontally)
 
+;; Pick up commands from my search path
+(jc-ensure-package 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 ;; Start server
 (server-start)
