@@ -31,6 +31,9 @@
 (add-hook 'enh-ruby-mode-hook (lambda()
 				(if (string-match "_test\.rb$" buffer-file-name)
 				    (ruby-test-mode))))
+(add-hook 'enh-ruby-mode-hook (lambda()
+			   (message "whitespace mode")
+			   (whitespace-mode 1)))
 
 ;; Rspec support - DISABLED while I use test unit :-(
 (jc-ensure-package 'rspec-mode)

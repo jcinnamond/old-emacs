@@ -15,7 +15,7 @@
 (global-highline-mode 1)
 
 ;; Whitespace
-(global-whitespace-mode 1)
+(global-whitespace-mode 0)
 (setq whitespace-style (quote
 			    ( face trailing tabs lines-tail tab-mark )))
 (set-face-background 'whitespace-tab "red")
