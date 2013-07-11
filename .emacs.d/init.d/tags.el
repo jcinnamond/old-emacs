@@ -1,3 +1,6 @@
+;; Just reload the tags file already
+(setq tags-revert-without-query 1)
+
 ;; Try to search through parent directories for a tags file when opening a ruby file
 (defun find-file-upwards (file-to-find)
   "Recursively searches each parent directory starting from the default-directory.
