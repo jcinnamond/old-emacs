@@ -8,6 +8,9 @@
 (require 'scss-mode)
 (setq scss-compile-at-save nil)
 
+(jc-ensure-package 'haml-mode)
+(require 'haml-mode)
+
 ;; Javascript
 (jc-ensure-package 'js2-mode)
 (autoload 'js2-mode "js2-mode" nil t)
