@@ -42,4 +42,5 @@
 (exec-path-from-shell-initialize)
 
 ;; Start server
-(server-start)
+(load "server")
+(unless (server-running-p) (server-start))
