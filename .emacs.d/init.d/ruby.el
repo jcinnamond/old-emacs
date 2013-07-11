@@ -29,9 +29,6 @@
 (add-hook 'ruby-test-mode-hook (lambda()
 				 (setq outline-regexp " *\\(def \\|test \\|context \\)")))
 (add-hook 'enh-ruby-mode-hook (lambda()
-				(if (string-match "_test\.rb$" buffer-file-name)
-				    (ruby-test-mode))))
-(add-hook 'enh-ruby-mode-hook (lambda()
 			   (message "whitespace mode")
 			   (whitespace-mode 1)))
 
