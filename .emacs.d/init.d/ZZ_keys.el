@@ -18,3 +18,6 @@
 ;; Stupid mac os-x uk keyboard # problems with emacsclient
 (global-set-key (kbd "C-c 0") 'server-edit)
 (global-set-key (kbd "C-c w") 'delete-frame)
+
+;; I never want to use ctrl-z from emacs
+(global-unset-key (kbd "C-z"))
