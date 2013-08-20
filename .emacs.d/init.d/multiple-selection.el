@@ -1,9 +1,5 @@
-(jc-ensure-package 'multiple-cursors)
-(require 'multiple-cursors)
-;;(multiple-cursors-mode)
-
-(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
-(global-set-key (kbd "C->") 'mc/mark-all-like-this)
+(setq cua-enable-cua-keys nil)
+(cua-mode)
 
 (jc-ensure-package 'expand-region)
 (require 'expand-region)
