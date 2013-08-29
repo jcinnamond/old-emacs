@@ -10,8 +10,8 @@
 (jc-ensure-package 'rbenv)
 (require 'rbenv)
 (rbenv-use-global)
+(setq rbenv-show-active-ruby-in-modeline 'nil)
 (global-rbenv-mode)
-(setq rbenv-modeline-function 'rbenv--modeline-plain)
 
 ;; Add support for IRB in a buffer
 (jc-ensure-package 'inf-ruby)
