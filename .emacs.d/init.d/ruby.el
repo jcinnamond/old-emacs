@@ -30,7 +30,7 @@
 ;; rspec support
 (jc-ensure-package 'rspec-mode)
 (require 'rspec-mode)
-(setq rspec-use-rake-flag nil)
+(setq rspec-use-rake-when-possible nil)
 
 ;; load rspec mode with enhanced-ruby-mode
 (add-hook 'enh-ruby-mode-hook (lambda ()
