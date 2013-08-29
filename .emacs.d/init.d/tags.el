@@ -6,7 +6,7 @@
   "Recursively searches each parent directory starting from the default-directory.
 looking for a file with name file-to-find.  Returns the path to it
 or nil if not found."
-  (labels
+  (cl-labels
       ((find-file-r (path)
                     (let* ((parent (file-name-directory path))
                            (possible-file (concat parent file-to-find)))
