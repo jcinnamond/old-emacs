@@ -7,7 +7,7 @@
 (add-hook 'eshell-mode-hook (lambda()
 			      (eshell-smart-initialize)))
 
-(defun eshell/clear ()
+(defun clear ()
   "Clear the eshell buffer."
   (interactive)
   (let ((inhibit-read-only t))
