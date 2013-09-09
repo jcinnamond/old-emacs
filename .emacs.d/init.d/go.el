@@ -29,7 +29,7 @@
     (rename-buffer (generate-new-buffer-name "Go Playground"))
     (insert (concat "package main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\tfmt.Println(\"This file is located in " filename "\")\n}"))
     (save-buffer)
-    (previous-line)
+    (forward-line -1)
     (end-of-line)
     (insert "\n\t")
     (go-mode)))
