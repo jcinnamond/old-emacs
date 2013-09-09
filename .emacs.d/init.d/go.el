@@ -17,9 +17,15 @@
   (save-buffer)
   (compile (concat "echo; go run " buffer-file-name)))
 
+(defun go-run-godoc-server ()
+  "Run godoc as a server on port 6060"
+  (interactive)
+  (start-process "godoc" "*godoc*" "godoc" "-http=:6060"))
+
 (define-key go-mode-map (kbd "C-c C-g t") 'go-test)
 (define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
 (define-key go-mode-map (kbd "C-c C-g f") 'gofmt)
+(define-key go-mode-map (kbd "C-c C-g d") 'go-run-godoc-server)
 
 (defun go-create-playground ()
   "Creates a new temporary file with a skeletal Go application"
