@@ -1,18 +1,11 @@
-(load-theme 'wombat)
+(load-theme 'zenburn t)
 
 ;; Use a red modeline for the active buffer to make it easier to spot
 (set-face-background 'mode-line "#a22")
 
-;; Make region marking contrast with hi-line
+;; Make region marking higher contrast
 (transient-mark-mode 1)
 (set-face-background 'region "#707")
-
-;; Use highline to highlight the current line. This doesn't trample on other
-;; highlighting.
-(jc-ensure-package 'highline)
-(require 'highline)
-(set-face-background 'highline-face "#333")
-(global-highline-mode 1)
 
 ;; Whitespace
 (global-whitespace-mode 0)
