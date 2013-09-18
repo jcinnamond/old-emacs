@@ -20,7 +20,8 @@
 (defun go-run-godoc-server ()
   "Run godoc as a server on port 6060"
   (interactive)
-  (start-process "godoc" "*godoc*" "godoc" "-http=:6060"))
+  (start-process "godoc" "*godoc*" "godoc" "-http=:6060")
+  (message "godoc started"))
 
 (define-key go-mode-map (kbd "C-c C-g t") 'go-test)
 (define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
