@@ -28,10 +28,18 @@
 (define-key go-mode-map (kbd "C-c C-g f") 'gofmt)
 (define-key go-mode-map (kbd "C-c C-g d") 'go-run-godoc-server)
 
+(defvar go-playground-dir (concat (getenv "GOPATH") "/src/playground")
+  "The directory to use when creating Go playground files")
+
+(defun go-ensure-playground-dir ()
+  "Creates the playground directory (if necessary) and returns the path"
+  (if (file-exists-p go-playground-dir) () (make-directory go-playground-dir)))
+
 (defun go-create-playground ()
   "Creates a new temporary file with a skeletal Go application"
   (interactive)
-  (let ((filename (make-temp-file "go-play-" nil ".go")))
+  (let ((filename (concat go-playground-dir "/" (make-temp-name "go-play-") ".go")))
+    (go-ensure-playground-dir)
     (find-file filename)
     (rename-buffer (generate-new-buffer-name "Go Playground"))
     (insert (concat "package main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\tfmt.Println(\"This file is located in " filename "\")\n}"))
