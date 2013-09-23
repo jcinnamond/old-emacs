@@ -1,4 +1,4 @@
-(jc-ensure-package 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(auto-complete-mode)
+(jc-ensure-package 'company)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-begin-commands '(self-insert-command))
