@@ -21,12 +21,13 @@
   "Run godoc as a server on port 6060"
   (interactive)
   (start-process "godoc" "*godoc*" "godoc" "-http=:6060")
-  (message "godoc started"))
+  (message "godoc started")
+  (browse-url "http://localhost:6060/"))
 
 (define-key go-mode-map (kbd "C-c C-g t") 'go-test)
 (define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
 (define-key go-mode-map (kbd "C-c C-g f") 'gofmt)
-(define-key go-mode-map (kbd "C-c C-g d") 'go-run-godoc-server)
+(global-set-key (kbd "C-c C-g d") 'go-run-godoc-server)
 
 (defvar go-playground-dir (concat (getenv "GOPATH") "/src/playground")
   "The directory to use when creating Go playground files")
