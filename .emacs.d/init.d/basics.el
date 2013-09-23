@@ -44,3 +44,7 @@
 ;; Start server
 (load "server")
 (unless (server-running-p) (server-start))
+
+;; Disambiguate buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward)
