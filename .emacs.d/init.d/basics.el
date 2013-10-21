@@ -52,3 +52,6 @@
 ;; Disambiguate buffer names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
+
+;; Jump between CamelCased words
+(global-subword-mode t)
