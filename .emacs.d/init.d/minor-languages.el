@@ -11,6 +11,9 @@
 (jc-ensure-package 'haml-mode)
 (require 'haml-mode)
 
+(jc-ensure-package 'slim-mode)
+(require 'slim-mode)
+
 ;; Javascript
 (jc-ensure-package 'js2-mode)
 (autoload 'js2-mode "js2-mode" nil t)
