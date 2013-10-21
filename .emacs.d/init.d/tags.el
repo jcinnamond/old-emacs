@@ -20,7 +20,7 @@ or nil if not found."
     (find-file-r default-directory)))
 
 (add-hook 'enh-ruby-mode-hook (lambda ()
-				(let ((my-tags-file (find-file-upwards "TAGS")))
+				(let ((my-tags-file (find-file-upwards ".git/TAGS")))
 				  (when my-tags-file
 				    (message "Loading tags file: %s" my-tags-file)
 				    (visit-tags-table my-tags-file)))
