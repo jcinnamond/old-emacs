@@ -4,12 +4,18 @@
 (require 'go-mode)
 (add-hook 'go-mode-hook (lambda()
 			  (setq tab-width 4)
+			  (electric-pair-mode -1)
 			  (local-set-key (kbd "M-.") 'godef-jump)))
 
 (defun go-test ()
-  "Run Go test for the current project"
+  "Run 'go test' for the current project"
   (interactive)
   (compile "go test"))
+
+(defun go-install ()
+  "Run 'go install' for the current project"
+  (interactive)
+  (compile "go install"))
 
 (defun go-run-file ()
   "Run the current file with 'go run'"
@@ -26,20 +32,22 @@
 
 (define-key go-mode-map (kbd "C-c C-g t") 'go-test)
 (define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
+(define-key go-mode-map (kbd "C-c C-g i") 'go-install)
 (define-key go-mode-map (kbd "C-c C-g f") 'gofmt)
 (global-set-key (kbd "C-c C-g d") 'go-run-godoc-server)
 
-(defvar go-playground-dir (concat (getenv "GOPATH") "/src/playground")
-  "The directory to use when creating Go playground files")
+(defun go-playground-dir ()
+  "The directory to use when creating new Go playground files"
+  (concat (getenv "GOPATH") "/src/playground"))
 
 (defun go-ensure-playground-dir ()
   "Creates the playground directory (if necessary) and returns the path"
-  (if (file-exists-p go-playground-dir) () (make-directory go-playground-dir)))
+  (if (file-exists-p (go-playground-dir)) () (make-directory (go-playground-dir))))
 
 (defun go-create-playground ()
   "Creates a new temporary file with a skeletal Go application"
   (interactive)
-  (let ((filename (concat go-playground-dir "/" (make-temp-name "go-play-") ".go")))
+  (let ((filename (concat (go-playground-dir) "/" (make-temp-name "go-play-") ".go")))
     (go-ensure-playground-dir)
     (find-file filename)
     (rename-buffer (generate-new-buffer-name "Go Playground"))
