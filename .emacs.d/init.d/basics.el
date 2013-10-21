@@ -10,6 +10,10 @@
 ;; No need for backup files as everything important is in git.
 (setq make-backup-files nil)
 
+;; Store auto save files out of the way
+(make-directory "~/.emacs.d/auto-save" "~/.emacs.d")
+(setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-save/" t)))
+
 ;; Don't create lockfiles in the current directory
 (setq create-lockfiles nil)
 
