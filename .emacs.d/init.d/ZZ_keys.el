@@ -21,3 +21,6 @@
 
 ;; I never want to use ctrl-z from emacs
 (global-unset-key (kbd "C-z"))
+
+;; Helm all the things
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
