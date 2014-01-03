@@ -31,10 +31,6 @@
 ;; Indent
 (setq standard-indent 2)
 
-;; Electric!
-(electric-pair-mode t)
-(electric-indent-mode t)
-
 ;; Don't open a new frame for ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
@@ -55,3 +51,16 @@
 
 ;; Jump between CamelCased words
 (global-subword-mode t)
+
+;;
+;; Taken from https://github.com/magnars/.emacs.d/blob/master/sane-defaults.el
+;;
+
+;; Auto refresh buffers
+(global-auto-revert-mode 1)
+
+;; Real emacs knights don't use shift to mark things
+(setq shift-select-mode nil)
+
+;; Sentences do not need double spaces to end. Period.
+(set-default 'sentence-end-double-space nil)

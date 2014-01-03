@@ -24,3 +24,15 @@
 
 ;; Helm all the things
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; Fullscreen
+(global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
+
+;;
+;; Taken from https://github.com/technomancy/better-defaults/blob/master/better-defaults.el
+;;
+
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-s") 'isearch-forward)
+(global-set-key (kbd "C-M-r") 'isearch-backward)
