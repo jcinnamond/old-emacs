@@ -28,6 +28,9 @@
 ;; Fullscreen
 (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
 
+;; Insert some text when using rectangle selection
+(global-set-key (kbd "C->") 'string-insert-rectangle)
+
 ;;
 ;; Taken from https://github.com/technomancy/better-defaults/blob/master/better-defaults.el
 ;;
