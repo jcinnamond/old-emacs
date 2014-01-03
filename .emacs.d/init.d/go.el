@@ -7,34 +7,40 @@
 			  (electric-pair-mode -1)
 			  (local-set-key (kbd "M-.") 'godef-jump)))
 
-(defun go-test ()
-  "Run 'go test' for the current project"
+(defun go-build ()
+  "Run 'go build' for the current project"
   (interactive)
-  (compile "go test"))
+  (compile "go build"))
+(define-key go-mode-map (kbd "C-c C-g b") 'go-build)
 
 (defun go-install ()
   "Run 'go install' for the current project"
   (interactive)
   (compile "go install"))
+(define-key go-mode-map (kbd "C-c C-g i") 'go-install)
 
 (defun go-run-file ()
   "Run the current file with 'go run'"
   (interactive)
   (save-buffer)
   (compile (concat "echo; go run " buffer-file-name)))
+(define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
+
+(defun go-test ()
+  "Run 'go test' for the current project"
+  (interactive)
+  (compile "go test"))
+(define-key go-mode-map (kbd "C-c C-g t") 'go-test)
 
 (defun go-run-godoc-server ()
   "Run godoc as a server on port 6060"
   (interactive)
   (start-process "godoc" "*godoc*" "godoc" "-http=:6060")
   (message "godoc started")
-  (browse-url "http://localhost:6060/"))
-
-(define-key go-mode-map (kbd "C-c C-g t") 'go-test)
-(define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
-(define-key go-mode-map (kbd "C-c C-g i") 'go-install)
-(define-key go-mode-map (kbd "C-c C-g f") 'gofmt)
+  (browse-url "http://localhost:6060/pkg"))
 (global-set-key (kbd "C-c C-g d") 'go-run-godoc-server)
+
+(define-key go-mode-map (kbd "C-c C-g f") 'gofmt)
 
 (defun go-playground-dir ()
   "The directory to use when creating new Go playground files"
