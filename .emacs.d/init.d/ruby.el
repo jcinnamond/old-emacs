@@ -77,3 +77,10 @@
 ;; Basic code folding for rspec
 (add-hook 'rspec-mode-hook (lambda()
 				(setq outline-regexp " *\\(def \\|it \\|describe \\|context \\)")))
+
+
+;; Alignment for hashes
+(defun jc-align-hash ()
+  (interactive)
+  (align-regexp (region-beginning) (region-end) ":\\(\\s-*\\)" 1 1 nil))
+(define-key enh-ruby-mode-map (kbd "C-<tab>") 'jc-align-hash)
