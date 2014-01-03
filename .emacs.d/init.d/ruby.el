@@ -83,4 +83,5 @@
 (defun jc-align-hash ()
   (interactive)
   (align-regexp (region-beginning) (region-end) ":\\(\\s-*\\)" 1 1 nil))
-(define-key enh-ruby-mode-map (kbd "C-<tab>") 'jc-align-hash)
+(add-hook 'enh-ruby-mode-hook (lambda()
+				(define-key enh-ruby-mode-map (kbd "C-<tab>") 'jc-align-hash)))
