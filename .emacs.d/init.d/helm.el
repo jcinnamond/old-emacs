@@ -3,20 +3,22 @@
 (require 'helm-files)
 (jc-ensure-package 'helm-ls-git)
 (require 'helm-ls-git)
+(setq helm-ls-git-show-abs-or-relative 'relative)
 
 (helm-mode t)
 
-(setq helm-ff-toggle-basename t)
+(setq helm-ff-toggle-basename nil)
 
 (defun helm-all-the-things ()
   "Use helm to find anything"
   (interactive)
   (helm :sources '(helm-source-findutils
-                 ;; helm-source-recentf
-                 helm-source-buffers-list
-                 helm-source-ctags
-		 helm-source-etags-select
-                 helm-source-ls-git)
+		   helm-source-files-in-current-dir
+		   ;; helm-source-recentf
+		   helm-source-buffers-list
+		   helm-source-ctags
+		   helm-source-etags-select
+		   helm-source-ls-git)
 	:buffer "*helm all the things*"))
 
 (global-set-key (kbd "C-x f") 'helm-all-the-things)
