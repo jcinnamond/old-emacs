@@ -1,5 +1,4 @@
 (jc-ensure-package 'go-mode)
-(jc-ensure-package 'go-autocomplete)
 
 (require 'go-mode)
 (add-hook 'go-mode-hook (lambda()
