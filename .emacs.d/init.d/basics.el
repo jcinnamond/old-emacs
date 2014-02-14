@@ -47,7 +47,7 @@
 
 ;; Disambiguate buffer names
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; Jump between CamelCased words
 (global-subword-mode t)
