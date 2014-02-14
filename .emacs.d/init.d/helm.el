@@ -18,7 +18,8 @@
 		   helm-source-buffers-list
 		   helm-source-ctags
 		   helm-source-etags-select
-		   helm-source-ls-git)
+		   helm-source-ls-git
+		   helm-source-ls-git-status)
 	:buffer "*helm all the things*"))
 
 (global-set-key (kbd "C-x f") 'helm-all-the-things)
