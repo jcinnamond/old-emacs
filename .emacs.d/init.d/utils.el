@@ -11,3 +11,7 @@
      (message (concat "Touched " (buffer-file-name)))
      (clear-visited-file-modtime))
 (global-set-key (kbd "C-x t") 'touch)
+
+;; Does xkcd count as a utility?
+(jc-ensure-package 'xkcd)
+(require 'xkcd)
