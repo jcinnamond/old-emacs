@@ -1,3 +1,4 @@
+(jc-ensure-package 'zenburn-theme)
 (load-theme 'zenburn t)
 
 ;; Use a red modeline for the active buffer to make it easier to spot
