@@ -23,7 +23,14 @@
   (interactive)
   (save-buffer)
   (compile (concat "echo; go run " buffer-file-name)))
-(define-key go-mode-map (kbd "C-c C-g r") 'go-run-file)
+(define-key go-mode-map (kbd "C-c C-g C-r") 'go-run-file)
+
+(defun go-run-dir ()
+  "Compile and run all files in the current directory with 'go run'"
+  (interactive)
+  (save-buffer)
+  (compile (concat "echo; go run *.go")))
+(define-key go-mode-map (kbd "C-c C-g r") 'go-run-dir)
 
 (defun go-test ()
   "Run 'go test' for the current project"
