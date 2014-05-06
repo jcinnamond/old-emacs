@@ -52,6 +52,10 @@
 ;; Jump between CamelCased words
 (global-subword-mode t)
 
+;; Start in fullscreen by default
+(if (string-equal "ns" (window-system))
+    (toggle-frame-fullscreen))
+
 ;;
 ;; Taken from https://github.com/magnars/.emacs.d/blob/master/sane-defaults.el
 ;;
