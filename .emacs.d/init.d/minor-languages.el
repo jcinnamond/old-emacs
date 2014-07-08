@@ -37,3 +37,10 @@
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
 (add-hook 'jsx-mode-hook 'fuck-you-tabs)
 
+(autoload 'smalltalk-mode "/usr/local/Cellar/gnu-smalltalk/3.2.5_1/share/emacs/site-lisp/smalltalk-mode.elc" "" t)
+(autoload 'gst "/usr/local/Cellar/gnu-smalltalk/3.2.5_1/share/emacs/site-lisp/gst-mode.elc" "" t)
+
+
+;; Haskell
+(jc-ensure-package 'haskell-mode)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
