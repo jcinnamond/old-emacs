@@ -1,11 +1,6 @@
 (iswitchb-mode 1)
 (ido-mode 1)
 
-;; Enhance ido
-(jc-ensure-package 'ido-better-flex)
-(ido-better-flex/enable)
-(setq ido-enable-flex-matching t)
-
 (jc-ensure-package 'ido-yes-or-no)
 (require 'ido-yes-or-no)
 
