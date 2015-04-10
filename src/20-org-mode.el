@@ -1,0 +1,5 @@
+(require 'org)
+(add-hook 'org-mode-hook (lambda()
+			   (auto-fill-mode)
+			   (flyspell-mode)))
+(setq org-log-done t)
