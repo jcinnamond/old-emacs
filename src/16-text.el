@@ -1,0 +1,5 @@
+(paradox-require 'markdown-mode)
+(add-hook 'markdown-mode-hook (lambda()
+			       (message "I LIKE HATS")
+			       (flyspell-mode)
+			       (auto-fill-mode)))
