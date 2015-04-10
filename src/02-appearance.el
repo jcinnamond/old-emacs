@@ -32,3 +32,9 @@
 (setq fci-rule-use-dashes 't)
 (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (global-fci-mode 1)
+
+;; Highlight matching parens
+(show-paren-mode 1)
+(set-face-background 'show-paren-match (face-background 'default))
+(set-face-foreground 'show-paren-match "#d44")
+(set-face-attribute 'show-paren-match nil :weight 'extra-bold)
