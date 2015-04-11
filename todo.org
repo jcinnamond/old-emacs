@@ -3,6 +3,13 @@
 ** TODO ensure wrap-mode gets loaded with more modes
 ** TODO tidy up ruby config
 ** TODO Snippets for rspec? (let, describe, it, subject)
+** TODO Javascript mode
+** TODO HTML mode
+** TODO Treetop mode
+** TODO SCSS mode
+** TODO coffeescript/slim/haml/mustache ?
+** TODO feature mode (for cucumber)
+** TODO Haskell mode
 
 * Startup time
 ** TODO Autoload moar things
