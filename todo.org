@@ -1,0 +1,13 @@
+* Tasks
+** TODO investigate using cask to manage packages
+** TODO ensure wrap-mode gets loaded with more modes
+** TODO tidy up ruby config
+** TODO Snippets for rspec? (let, describe, it, subject)
+
+* Startup time
+** TODO Autoload moar things
+** TODO Remove the number of snippets loaded
+
+* Key clashes
+* TODO flyspell mode clashes with expand region (C-.)
+* TODO org mode clashes with windmove (Shift + arrows)
