@@ -1,6 +1,8 @@
 * Tasks
 ** TODO investigate using cask to manage packages
 ** TODO ensure wrap-mode gets loaded with more modes
+** TODO Skip uninteresting buffers with prev/next
+** TODO Try to reduce free variable warnings when compiling config
 ** TODO tidy up ruby config
 ** TODO Snippets for rspec? (let, describe, it, subject)
 ** TODO Javascript mode
