@@ -16,5 +16,6 @@
 ** TODO Remove the number of snippets loaded
 
 * Key clashes
-* TODO flyspell mode clashes with expand region (C-.)
+* DONE flyspell mode clashes with expand region (C-.)
+  CLOSED: [2015-04-11 Sat 12:47]
 * TODO org mode clashes with windmove (Shift + arrows)
