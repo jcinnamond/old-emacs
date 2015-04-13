@@ -23,7 +23,8 @@
 
 (add-hook 'enh-ruby-mode-hook (lambda()
 				(whitespace-mode 1)
-				(wrap-region-mode t)))
+				(wrap-region-mode t)
+				(flyspell-prog-mode)))
 
 ;; rubocop support
 (paradox-require 'rubocop)
