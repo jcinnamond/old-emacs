@@ -22,22 +22,22 @@
 (paradox-require 'yaml-mode)
 
 (add-hook 'enh-ruby-mode-hook (lambda()
-			   (whitespace-mode 1)))
-
-;; rspec support
-(paradox-require 'rspec-mode)
-(setq rspec-use-rake-when-possible nil)
+				(whitespace-mode 1)
+				(wrap-region-mode t)))
 
 ;; rubocop support
 (paradox-require 'rubocop)
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
 
+;; rspec support
+(paradox-require 'rspec-mode)
+
 ;; load rspec mode with enhanced-ruby-mode
 (add-hook 'enh-ruby-mode-hook (lambda ()
 				(if (rspec-buffer-is-spec-p)
 				    (rspec-mode)
-				  (rspec-verifiable-mode))
-				))
+				  (rspec-verifiable-mode))))
+
 ;; Taken from http://blog.senny.ch/blog/2012/10/06/emacs-tidbits-for-ruby-developers/
 (defun senny-ruby-open-spec-other-buffer ()
   (interactive)
