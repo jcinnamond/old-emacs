@@ -12,12 +12,15 @@
 ** TODO coffeescript/slim/haml/mustache ?
 ** TODO feature mode (for cucumber)
 ** TODO Haskell mode
-
+** TODO Set compile command in Gemfiles to bundle install
 * Startup time
 ** TODO Autoload moar things
 ** TODO Remove the number of snippets loaded
 
 * Key clashes
-* DONE flyspell mode clashes with expand region (C-.)
-  CLOSED: [2015-04-11 Sat 12:47]
-* TODO org mode clashes with windmove (Shift + arrows)
+** DONE flyspell mode clashes with expand region (C-.)
+   CLOSED: [2015-04-11 Sat 12:47]
+** TODO org mode clashes with windmove (Shift + arrows)
+
+* Things to investigate
+** projectile
