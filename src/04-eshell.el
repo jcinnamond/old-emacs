@@ -4,12 +4,13 @@
 (setq eshell-review-quick-commands nil)
 (setq eshell-smart-space-goes-to-end nil)
 
-(add-hook 'eshell-mode-hook (lambda()
-			      (eshell-smart-initialize)))
-
-(defun clear ()
+(defun eshell-clear ()
   "Clear the eshell buffer."
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)
-    (comint-send-input)))
+    (eshell-send-input)))
+
+(add-hook 'eshell-mode-hook (lambda()
+			      (define-key eshell-mode-map (kbd "C-l") 'eshell-clear)
+			      (eshell-smart-initialize)))
