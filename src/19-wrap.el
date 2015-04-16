@@ -1,2 +1,3 @@
 (paradox-require 'wrap-region)
-(wrap-region-mode t)
+(wrap-region-global-mode t)
+(wrap-region-add-wrapper "`" "`")
