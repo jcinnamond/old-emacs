@@ -26,7 +26,9 @@
 (global-set-key (kbd "C-x p") 'helm-browse-project)
 
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-c s") 'helm-google-suggest)
 
+(define-key emacs-lisp-mode-map (kbd "M-/") 'helm-lisp-completion-at-point)
 
 (paradox-require 'helm-swoop)
 (require 'helm-swoop)
@@ -38,3 +40,6 @@
 
 ;; Helm all the things
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; Visual kill rings ftw
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
