@@ -4,6 +4,13 @@
 (paradox-require 'smart-mode-line)
 (sml/setup)
 
+;; Show date/time and battery % in mode line
+(setq display-time-format "%d %b / %H:%M")
+(setq display-time-load-average-threshold 5)
+(display-time-mode 1)
+(setq battery-mode-line-format " [%b%p%%]")
+(display-battery-mode 1)
+
 ;; Strip back the UI
 (setq inhibit-startup-message t)
 (tool-bar-mode 0)
