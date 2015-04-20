@@ -22,7 +22,9 @@
 (paradox-require 'yaml-mode)
 
 (add-hook 'enh-ruby-mode-hook (lambda()
-				(whitespace-mode 1)
+				(if big-state
+				    (whitespace-mode 0)
+				  (whitespace-mode 1))
 				(wrap-region-mode t)
 				(flyspell-prog-mode)))
 
