@@ -4,7 +4,8 @@
 ** TODO Skip uninteresting buffers with prev/next
 ** TODO Try to reduce free variable warnings when compiling config
 ** TODO tidy up ruby config
-** TODO Snippets for rspec? (let, describe, it, subject)
+** DONE Snippets for rspec? (let, describe, it, subject)
+   CLOSED: [2015-04-24 Fri 21:49]
 ** TODO Javascript mode
 ** TODO HTML mode
 ** TODO Treetop mode
@@ -15,7 +16,8 @@
 ** TODO Set compile command in Gemfiles to bundle install
 * Startup time
 ** TODO Autoload moar things
-** TODO Remove the number of snippets loaded
+** DONE Remove the number of snippets loaded
+   CLOSED: [2015-04-24 Fri 21:49]
 
 * Key clashes
 ** DONE flyspell mode clashes with expand region (C-.)
