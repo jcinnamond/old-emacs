@@ -1,0 +1,1 @@
+(paradox-require 'haskell-mode)

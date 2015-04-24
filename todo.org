@@ -12,7 +12,8 @@
 ** TODO SCSS mode
 ** TODO coffeescript/slim/haml/mustache ?
 ** TODO feature mode (for cucumber)
-** TODO Haskell mode
+** DONE Haskell mode
+   CLOSED: [2015-04-24 Fri 21:53]
 ** TODO Set compile command in Gemfiles to bundle install
 * Startup time
 ** TODO Autoload moar things
