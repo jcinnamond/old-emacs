@@ -9,3 +9,5 @@
 
 (paradox-require 'github-browse-file)
 (global-set-key (kbd "C-c g") 'github-browse-file)
+
+(paradox-require 'gist)
