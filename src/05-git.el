@@ -33,4 +33,4 @@
     (string-match "'\\([^']+\\)'" output)
     (concat (file-name-as-directory dir) (match-string 1 output))))
 
-(global-set-key (kbd "C-x C-g") 'git-clone)
+(global-set-key (kbd "C-M-g") 'git-clone)
