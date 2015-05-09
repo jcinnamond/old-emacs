@@ -1,6 +1,8 @@
 (paradox-require 'haskell-mode)
 (paradox-require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(add-hook 'haskell-mode-hook (lambda ()
+			       (interactive-haskell-mode)
+			       (turn-on-haskell-indent)))
 
 (custom-set-variables
   '(haskell-process-suggest-remove-import-lines t)
