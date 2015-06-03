@@ -38,8 +38,9 @@
 
 (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
 
-;; Helm all the things
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(helm-add-action-to-source "Magit here" 'magit-status helm-source-find-files 3)
+(helm-add-action-to-source "Insert file" 'insert-file helm-source-find-files 4)
 
 ;; Visual kill rings ftw
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
