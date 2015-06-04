@@ -39,6 +39,14 @@
 (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
 
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; Bleugh. helm-source-find-files defaults to nil so we can't add actions to
+;; it yet. This horrible fix copies the code out of helm-files that
+;; initializes it.
+(unless helm-source-find-files
+  (setq helm-source-find-files (helm-make-source
+				   "Find Files" 'helm-source-ffiles)))
+;; Now we can add the actions.
 (helm-add-action-to-source "Magit here" 'magit-status helm-source-find-files 3)
 (helm-add-action-to-source "Insert file" 'insert-file helm-source-find-files 4)
 
