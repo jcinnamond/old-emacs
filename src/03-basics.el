@@ -51,3 +51,6 @@
 
 ;; Auto refresh buffers
 (global-auto-revert-mode 1)
+
+;; Jump back to previous window configurations
+(winner-mode 1)
