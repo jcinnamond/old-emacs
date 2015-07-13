@@ -1,6 +1,4 @@
 (paradox-require 'magit)
-(paradox-require 'git-commit-mode)
-(paradox-require 'git-rebase-mode)
 (paradox-require 'gitconfig-mode)
 (paradox-require 'gitignore-mode)
 (global-set-key (kbd "C-x g") 'magit-status)
