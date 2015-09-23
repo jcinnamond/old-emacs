@@ -56,32 +56,6 @@
 (add-hook 'enh-ruby-mode-hook (lambda ()
 				(define-key enh-ruby-mode-map (kbd "C-c , ,") 'senny-ruby-open-spec-other-buffer)
 				))
-;; Alignment for hashes
-(defun jc-align-hash-old-style-p (string)
-  (if (string-match "=>" string)
-      't
-    nil))
-
-(defun jc-align-hash-old-style ()
-  (message "aligning old")
-  (align-regexp (region-beginning) (region-end) "\\(\\s-*\\)=>")
-  (message "aligned old"))
-
-(defun jc-align-hash-new-style ()
-  (align-regexp (region-beginning) (region-end) ":\\(\\s-*\\)" 1 1 nil)
-  (message "aligned new"))
-
-(defun jc-align-hash ()
-  (interactive)
-  (if (region-active-p)
-      (let ((selection (buffer-substring-no-properties (region-beginning) (region-end))))
-	(if (jc-align-hash-old-style-p selection)
-	    (jc-align-hash-old-style)
-	(jc-align-hash-new-style)))
-  (message "jc-align-hash requires an active mark")))
-(add-hook 'enh-ruby-mode-hook (lambda()
-				(define-key enh-ruby-mode-map (kbd "C-<tab>") 'jc-align-hash)))
-
 
 (require 'rcodetools)
 (define-key enh-ruby-mode-map (kbd "C-c C-c") 'xmp)
