@@ -53,9 +53,95 @@
 	  (end-of-line)
 	  (buffer-substring-no-properties p (point)))))
 
+;; Quote swapping
+
+(defun jc-toggle-quotes ()
+  (interactive)
+  (case (jc--guess-string-type)
+    ('single-quote (jc-use-double-quotes))
+    ('double-quote (jc-use-single-quotes))))
+
+(defun jc-use-double-quotes ()
+  (interactive)
+  (jc--replace-wrapping-char "'" "\""))
+
+(defun jc-use-single-quotes ()
+  (interactive)
+  (jc--replace-wrapping-char "\"" "'"))
+
+(defun jc--replace-wrapping-char (quote replacement)
+  (let ((opening (jc--find-backward-in-line (jc--avoid-escape quote)))
+	(closing (jc--find-forward-in-line (jc--avoid-escape quote))))
+    (if (and opening closing)
+	(progn
+	  (jc--replace-at-point opening replacement)
+	  (jc--replace-at-point closing replacement)
+	  (jc--escape (+ 1 opening) closing replacement)
+	  (jc--unescape (+ 1 opening) closing (jc--alternative-to replacement)))
+      (message (concat "point is not between " quote)))))
+
+(defun jc--replace-at-point (pos replacement)
+  (save-excursion
+    (goto-char pos)
+    (delete-char 1)
+    (insert replacement)))
+
+(defun jc--find-backward-in-line (pattern)
+  (save-excursion
+    (if (re-search-backward pattern (line-beginning-position) t)
+	(match-beginning 1))))
+
+(defun jc--find-forward-in-line (pattern)
+  (save-excursion
+    (if (re-search-forward pattern (line-end-position) t)
+	(match-beginning 1))))
+
+(defun jc--guess-string-type ()
+  (let ((possible (jc--find-nearest-quote)))
+    (if possible
+	(if (jc--find-forward-in-line (jc--avoid-escape possible))
+	    (jc--quote-to-identifier possible))
+      (let ((alternative (jc--alternative-to possible)))
+	(if (jc--find-forward-in-line alternative)
+	    (jc--quote-to-identifier alternative))))))
+
+(defun jc--find-nearest-quote ()
+  (jc--find-backward-in-line (jc--avoid-escape "['\"]"))
+  (match-string-no-properties 1))
+
+(defun jc--quote-to-identifier (sym)
+  (if (string-equal sym "'")
+      'single-quote
+    (if (string-equal sym "\"")
+	'double-quote)))
+
+(defun jc--alternative-to (sym)
+  (if (string-equal sym "'")
+      "\""
+    (if (string-equal sym "\"")
+	"'")))
+
+(defun jc--escape (start end chr)
+  (save-excursion
+    (goto-char start)
+    (while (search-forward chr end t)
+      (replace-match (concat "\\" chr) nil t))))
+
+(defun jc--unescape (start end chr)
+  (save-excursion
+    (goto-char start)
+    (while (search-forward (concat "\\" chr) end t)
+      (replace-match chr nil t))))
+
+(defun jc--avoid-escape (pat)
+  (concat "\\(?:^\\|[^\\]\\)\\(" pat "\\)"))
+
+;; Keybindings
+
 (defun jc-ruby--setup-keys ()
-  (dolist (map (list ruby-mode-map enh-ruby-mode-map))
+  (dolist (map (list ruby-mode-map))
     (define-key map (kbd "C-c @") 'jc-ruby-instance-variables)
-    (define-key map (kbd "C-<tab>") 'jc-align-hash)))
+    (define-key map (kbd "C-<tab>") 'jc-align-hash)
+    (define-key map (kbd "C-c '>") 'jc-toggle-quotes)))
 
 (eval-after-load 'ruby-mode '(jc-ruby--setup-keys))
