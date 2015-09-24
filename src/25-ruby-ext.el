@@ -136,12 +136,46 @@
 (defun jc--avoid-escape (pat)
   (concat "\\(?:^\\|[^\\]\\)\\(" pat "\\)"))
 
+;; Switch between strings and symbols
+
+(defun jc-toggle-symbol ()
+  (interactive)
+  (cond
+   ((jc--in-symbol-p) (jc--symbol-to-string))
+   ((jc--guess-string-type) (jc--string-to-symbol))
+   (t "Not in a string or symbol")))
+
+(defun jc--in-symbol-p ()
+  (save-excursion
+    (re-search-backward "^\\|[[:space:]]" nil t)
+    (if (string-match "[[:space:]]" (jc--char-at-point))
+	(forward-char))
+    (string-equal (jc--char-at-point) ":")))
+
+(defun jc--char-at-point ()
+  (buffer-substring-no-properties (point) (+ 1 (point))))
+
+(defun jc--symbol-to-string ()
+  (save-excursion
+    (re-search-backward ":")
+    (delete-char 1)
+    (insert "'")
+    (forward-word)
+    (insert "'")))
+
+(defun jc--string-to-symbol ()
+  (let ((opening (jc--find-backward-in-line (jc--avoid-escape "['\"]")))
+	(closing (jc--find-forward-in-line (jc--avoid-escape "['\"]"))))
+    (jc--replace-at-point opening ":")
+    (jc--replace-at-point closing "")))
+
 ;; Keybindings
 
 (defun jc-ruby--setup-keys ()
   (dolist (map (list ruby-mode-map))
     (define-key map (kbd "C-c @") 'jc-ruby-instance-variables)
     (define-key map (kbd "C-<tab>") 'jc-align-hash)
-    (define-key map (kbd "C-c '>") 'jc-toggle-quotes)))
+    (define-key map (kbd "C-c '") 'jc-toggle-quotes)
+    (define-key map (kbd "C-c :") 'jc-toggle-symbol)))
 
 (eval-after-load 'ruby-mode '(jc-ruby--setup-keys))
