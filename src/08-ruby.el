@@ -30,3 +30,4 @@
 (add-hook 'ruby-mode-hook 'seeing-is-believing)
 (define-key ruby-mode-map (kbd "C-c C-c") 'seeing-is-believing-run-as-xmpfilter)
 
+(load "ruty")

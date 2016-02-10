@@ -57,3 +57,6 @@
 
 (setq ispell-dictionary "en_GB")
 
+;; Sometimes I like recursive functions
+(setq max-lisp-eval-depth 10000)
+(setq max-specpdl-size 10000)
