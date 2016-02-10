@@ -26,10 +26,21 @@
 (defun jc-ruby-instance-variables ()
   "Creates an assignment to an instance variables for each method param"
   (interactive)
-  (dolist (p (jc-ruby-extract-params))
-    (insert (concat "@" p " = " p))
-    (newline-and-indent))
-  (delete-blank-lines))
+  (save-excursion
+    (let ((params (jc-ruby-extract-params)))
+	  (dolist (p params)
+	    (insert (concat "@" p " = " p))
+	    (newline-and-indent))
+	  (delete-blank-lines)
+	  (jc--insert-attr-reader params))))
+
+(defun jc--insert-attr-reader (params)
+  (ruby-beginning-of-block)
+  (newline-and-indent)
+  (previous-line)
+  (insert "attr_reader :")
+  (insert (s-join ", :" params))
+  (newline-and-indent))
 
 (defun jc-ruby-extract-params ()
   (jc-ruby-param-seq (jc-ruby-param-string (jc-ruby-method-header))))
@@ -57,9 +68,9 @@
 
 (defun jc-toggle-quotes ()
   (interactive)
-  (case (jc--guess-string-type)
-    ('single-quote (jc-use-double-quotes))
-    ('double-quote (jc-use-single-quotes))))
+  (pcase (jc--guess-string-type)
+    (`single-quote (jc-use-double-quotes))
+    (`double-quote (jc-use-single-quotes))))
 
 (defun jc-use-double-quotes ()
   (interactive)
