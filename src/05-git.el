@@ -32,3 +32,6 @@
     (concat (file-name-as-directory dir) (match-string 1 output))))
 
 (global-set-key (kbd "C-M-g") 'git-clone)
+
+(paradox-require 'git-gutter-fringe)
+(global-git-gutter-mode)
