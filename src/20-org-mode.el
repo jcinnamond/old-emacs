@@ -6,3 +6,5 @@
 (setq org-src-fontify-natively t)
 
 (define-key org-mode-map (kbd "C-c C-c") 'org-md-export-to-markdown)
+
+(paradox-require 'htmlize)
