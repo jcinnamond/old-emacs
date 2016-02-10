@@ -23,8 +23,10 @@
 				(rspec-mode)
 			      (rspec-verifiable-mode))))
 
-(require 'rcodetools)
-(define-key ruby-mode-map (kbd "C-c C-c") 'xmp)
-
 (add-hook 'ruby-mode-hook 'flycheck-mode)
 (add-hook 'ruby-mode-hook 'flyspell-prog-mode)
+
+(paradox-require 'seeing-is-believing)
+(add-hook 'ruby-mode-hook 'seeing-is-believing)
+(define-key ruby-mode-map (kbd "C-c C-c") 'seeing-is-believing-run-as-xmpfilter)
+
