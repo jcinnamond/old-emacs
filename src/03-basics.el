@@ -18,6 +18,10 @@
 ;; Indent
 (setq standard-indent 2)
 
+;; Awesome indenting
+(paradox-require 'aggressive-indent)
+(aggressive-indent-global-mode)
+
 ;; Don't open a new frame for ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
