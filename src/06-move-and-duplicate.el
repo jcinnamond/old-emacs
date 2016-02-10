@@ -14,3 +14,19 @@
 
 (paradox-require 'duplicate-thing)
 (global-set-key (kbd "M-c") 'duplicate-thing)
+
+(defun insert-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (open-line 1)
+  (indent-according-to-mode))
+
+(defun insert-line-below ()
+  (interactive)
+  (end-of-line)
+  (open-line 1)
+  (next-line)
+  (indent-according-to-mode))
+
+(global-set-key (kbd "C-c o") 'insert-line-below)
+(global-set-key (kbd "C-c C-o") 'insert-line-above)
