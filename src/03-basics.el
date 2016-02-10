@@ -54,3 +54,6 @@
 
 ;; Jump back to previous window configurations
 (winner-mode 1)
+
+(setq ispell-dictionary "en_GB")
+
