@@ -21,6 +21,7 @@
 ;; Awesome indenting
 (paradox-require 'aggressive-indent)
 (aggressive-indent-global-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'idris-mode)
 
 ;; Don't open a new frame for ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
