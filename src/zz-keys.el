@@ -29,3 +29,6 @@
 ;; Stupid mac os-x uk keyboard # problems with emacsclient
 (global-set-key (kbd "C-c 0") 'server-edit)
 (global-set-key (kbd "C-c w") 'delete-frame)
+
+;; Align things
+(global-set-key (kbd "C-c |") 'align-regexp)
