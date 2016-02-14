@@ -25,6 +25,7 @@
 
 (add-hook 'ruby-mode-hook 'flycheck-mode)
 (add-hook 'ruby-mode-hook 'flyspell-prog-mode)
+(add-hook 'ruby-mode-hook 'electric-pair-mode)
 
 (paradox-require 'seeing-is-believing)
 (add-hook 'ruby-mode-hook 'seeing-is-believing)
