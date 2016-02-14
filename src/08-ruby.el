@@ -39,3 +39,10 @@
  '(and (derived-mode-p 'ruby-mode)
        (string-match "\\b\\(def\\|class\\)\\b"
 		     (thing-at-point 'line))))
+
+;; Binding for running compile
+(define-key ruby-mode-map (kbd "C-c ;") 'compile)
+
+(add-hook 'ruby-mode-hook (lambda ()
+			    (set (make-local-variable 'compile-command)
+				 "bundle ")))
