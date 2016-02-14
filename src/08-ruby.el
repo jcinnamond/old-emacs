@@ -32,3 +32,10 @@
 (define-key ruby-mode-map (kbd "C-c C-c") 'seeing-is-believing-run-as-xmpfilter)
 
 (load "ruty")
+
+;; Calm aggressive-indent-mode down a little
+(add-to-list
+ 'aggressive-indent-dont-indent-if
+ '(and (derived-mode-p 'ruby-mode)
+       (string-match "\\b\\(def\\|class\\)\\b"
+		     (thing-at-point 'line))))
