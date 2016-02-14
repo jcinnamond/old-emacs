@@ -12,7 +12,8 @@
   (setq big-state nil)
 
   ;; Replace helpful highlighting
-  (setq enh-ruby-check-syntax 'errors-and-warnings)
+  (add-hook 'ruby-mode-hook 'flycheck-mode)
+  (add-hook 'ruby-mode-hook 'flycheck-prog-mode)
 
   ;; Re-enable distractions in the mode line
   (display-battery-mode 1)
@@ -28,7 +29,8 @@
 
   ;; Remove helpful highlighting
   (whitespace-mode 0)
-  (setq enh-ruby-check-syntax nil)
+  (remove-hook 'ruby-mode-hook 'flycheck-mode)
+  (remove-hook 'ruby-mode-hook 'flycheck-prog-mode)
 
   ;; Remember mode line configuration so we can restore it later
   (setq big-previous-mode-line-format mode-line-format)
