@@ -17,6 +17,11 @@
 ;; Fullscreen
 (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
 
+;; Use guide-key to help me out
+(paradox-require 'guide-key)
+(global-set-key (kbd "C-h C-k") 'guide-key-mode)
+(setq guide-key/guide-key-sequence '("C-c r" "C-c r !" "C-c p" "C-x r"))
+
 ;;
 ;; Taken from https://github.com/technomancy/better-defaults/blob/master/better-defaults.el
 ;;
