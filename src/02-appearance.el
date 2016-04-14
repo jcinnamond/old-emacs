@@ -45,3 +45,6 @@
 (set-face-background 'show-paren-match (face-background 'default))
 (set-face-foreground 'show-paren-match "#d44")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+
+;; Show emoji
+(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
