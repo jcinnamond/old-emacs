@@ -14,6 +14,9 @@
 (paradox-require 'rubocop)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 
+;; Bundler support
+(paradox-require 'bundler)
+
 ;; rspec support
 (paradox-require 'rspec-mode)
 
