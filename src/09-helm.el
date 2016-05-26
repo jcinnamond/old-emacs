@@ -6,6 +6,7 @@
 (setq helm-ls-git-show-abs-or-relative 'relative)
 (setq helm-split-window-default-side 'right)
 (setq helm-split-window-in-side-p nil)
+(setq helm-full-frame t)
 
 (helm-mode t)
 
