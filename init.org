@@ -1,0 +1,551 @@
+#+TITLE: Emacs configuration
+#+AUTHOR: John Cinnamond
+#+PROPERTY: header-args :tangle yes
+
+My emacs configuration, writting using org-babel.
+
+Some of this is stolen from [[http://mescal.imag.fr/membres/arnaud.legrand/misc/init.php][this webpage.]]
+
+I 'tangle' the source code from here into an init file, that then gets
+compiled to speed up initialization time. Check out this quick
+[[https://justin.abrah.ms/emacs/literate_programming.html][introduction to tangling]].
+
+** TODO Ruby functions to create instance variables
+** TODO Fix mode line
+** TODO Fix snippet loading
+** TODO pairing mode
+** TODO el-presenti
+** TODO ruty
+** TODO Server
+** TODO Autocompile on tangle of this file
+** TODO Switch back to helm, or work out how to add actions to ivy
+
+* Requirements
+
+- Emacs > 24.3
+- Cask
+- pallet
+
+* macOS integrations
+
+The meta key is awkward to reach on a mac keyboard, so I've swapped it
+with cmd (super). I'm doing this as early as possible so that it still
+remaps the keys even if the rest of the config contains errors.
+
+#+BEGIN_SRC emacs-lisp
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+#+END_SRC
+
+Stupid mac os-x uk keyboard # problems with emacsclient.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c 0") 'server-edit)
+  (global-set-key (kbd "C-c w") 'delete-frame)
+#+END_SRC
+
+Allow emacs to find programs install by homebrew.
+
+#+BEGIN_SRC emacs-lisp
+  (setq exec-path (append exec-path '("/usr/local/bin")))
+#+END_SRC
+
+* Packages
+
+Use cask to manage dependencies. I installed Cask via homebrew.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'cask "/usr/local/Cellar/cask/0.7.4/cask.el")
+  (cask-initialize)
+#+END_SRC
+
+The use pallet to track packages added via package-install or paradaox
+so that I don't need to manually manage the Cask file.
+
+#+BEGIN_SRC emacs-lisp
+  (pallet-mode 1)
+#+END_SRC
+
+I'm using [[https://github.com/jwiegley/use-package][use-package]], primarily to speed up initialization time but
+also to keep things tidy.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'use-package)
+#+END_SRC
+
+I'm now ready to use paradox for a better interface to
+package-list-packages.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package paradox
+    :config
+    (setq paradox-github-token t)
+    (setq paradox-automatically-star t))
+#+END_SRC
+
+* Appearance
+
+I like to strip back the UI and use a low contrast dark theme.
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t)
+  (tool-bar-mode 0)
+  (menu-bar-mode 0)
+  (scroll-bar-mode 0)
+
+  (load-theme 'zenburn t)
+#+END_SRC
+
+It's useful to highlight the matching parens, especially when writing elisp.
+
+#+BEGIN_SRC emacs-lisp
+  (show-paren-mode 1)
+  (set-face-background 'show-paren-match (face-background 'default))
+  (set-face-foreground 'show-paren-match "#d44")
+  (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+#+END_SRC
+
+** Mode line
+
+I use smart mode line to make it prettier/easier to read, and then add
+some extra info:
+
+- line and column numbers
+- the date/time
+- battery info.
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package smart-mode-line
+  ;;   :config
+  ;;   (setq sml/no-confirm-load-theme t)
+  ;;   (sml/setup)
+  ;;   (sml/apply-theme 'powerline))
+#+END_SRC
+
+Don't show some modes in the modeline.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :diminish flycheck-mode)
+  (use-package flyspell
+    :diminish flyspell-mode
+    :config
+    (bind-key (kbd "C-;") nil flyspell-mode-map))
+#+END_SRC
+
+** Coding styles
+
+I like to make whitespace obvious.
+
+#+BEGIN_SRC emacs-lisp
+  (global-whitespace-mode 0)
+  (setq whitespace-style (quote
+                          ( face trailing tabs lines-tail tab-mark empty )))
+  (setq whitespace-line-column 100)
+  (set-face-background 'whitespace-tab "#733")
+  (set-face-background 'whitespace-trailing "#544")
+  (set-face-background 'whitespace-empty "#544")
+  (set-face-background 'whitespace-line "#544")
+  (set-face-foreground 'whitespace-line "#ddd")
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+#+END_SRC
+
+Add a visible marker at column 80.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package fill-column-indicator
+    :init
+    (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+    (global-fci-mode 1)
+    :config
+    (setq fci-rule-column 80)
+    (setq fci-rule-width 3)
+    (setq fci-rule-use-dashes 't))
+#+END_SRC
+
+* File related
+
+I probably only use dired-x to jump to current buffer, but it has
+other useful things too.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dired-x)
+#+END_SRC
+
+No need to backup files - that's what git is for.
+
+#+BEGIN_SRC emacs-lisp
+  (setq make-backup-files nil)
+#+END_SRC
+
+Autosave is useful, but don't litter the current directory with the
+files.
+
+#+BEGIN_SRC emacs-lisp
+  (make-directory "~/.emacs.d/auto-save" "~/.emacs.d")
+  (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-save/" t)))
+#+END_SRC
+
+Don't create lockfiles in the current directory.
+
+#+BEGIN_SRC emacs-lisp
+  (setq create-lockfiles nil)
+#+END_SRC
+
+* Selection
+
+Allow narrowing.
+
+#+BEGIN_SRC emacs-lisp
+  (put 'narrow-to-region 'disabled nil)
+#+END_SRC
+
+Expand region is pretty handy. Use it in conjunction with embrace to
+wrap regions in pairs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :bind (("C-=" . er/expand-region)))
+  (use-package embrace)
+#+END_SRC
+
+Allow simultaneous editing in multiple places with iedit and multiple cursors.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package iedit)
+  (use-package multiple-cursors
+    :bind (("C-c ;" . mc/edit-lines)))
+#+END_SRC
+
+* Moving and duplicating lines
+
+#+BEGIN_SRC emacs-lisp
+  (use-package duplicate-thing
+    :bind (("M-c" . duplicate-thing)))
+#+END_SRC
+
+Use move-text to move lines around. I don't use the default bindings.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package move-text
+    :bind (("M-S-<up>" . move-text-up)
+           ("M-S-<down>" . move-text-down)))
+#+END_SRC
+
+* Indentation
+
+Two spaces is enough for anyone.
+
+#+BEGIN_SRC emacs-lisp
+  (setq standard-indent 2)
+#+END_SRC
+
+Use aggressive indent for reindenting code as you type.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package aggressive-indent
+    :diminish aggressive-indent-mode
+    :functions aggressive-indent-global-mode
+    :init
+    (aggressive-indent-global-mode)
+    (add-to-list 'aggressive-indent-excluded-modes 'idris-mode))
+#+END_SRC
+
+* Org mode
+
+Some tweaks to org mode:
+
+- line wrapping
+- spell checking
+- syntax highlighting code blocks
+
+I also remove the org mode bindings that clash with windmove.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :config
+    (add-hook 'org-mode-hook 'flyspell-mode)
+    (add-hook 'org-mode-hook 'auto-fill-mode)
+    (setq org-src-fontify-natively t)
+    (bind-key (kbd "S-<left>") nil org-mode-map)
+    (bind-key (kbd "S-<right>") nil org-mode-map)
+    (bind-key (kbd "S-<up>") nil org-mode-map)
+    (bind-key (kbd "S-<down>") nil org-mode-map)
+    (bind-key (kbd "C-c >") nil org-mode-map))
+#+END_SRC
+
+* Ivy
+
+I use ivy in place of ido/smex/helm. It's fast and does most of what I
+want. Helm is more powerful but not as quick.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ivy
+    :bind (("C-c C-r" . ivy-resume))
+    :diminish ivy-mode
+    :init
+    (ivy-mode 1)
+    (setq ivy-height 20)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) "))
+#+END_SRC
+
+Use swiper in place of isearch.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :bind (("C-s" . swiper)))
+#+END_SRC
+
+Use ivy enhancements for various emacs commands.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :bind (("M-y" . counsel-yank-pop)
+           ("C-x C-f" . counsel-find-file)
+           ("C-c k" . counsel-ag)))
+#+END_SRC
+
+* Git
+
+Magit is the best thing to ever happen in the world of programming.
+
+#+BEGIN_SRC emacs-lisp
+    (use-package magit
+      :bind (("C-x g" . magit-status))
+      :config
+      (setq magit-completing-read-function 'ivy-completing-read))
+#+END_SRC
+
+Open files on github.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package github-browse-file
+    :bind (("C-c g" . github-browse-file)))
+#+END_SRC
+
+* Projectile
+
+Use projectile to manage projects.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :init (projectile-global-mode)
+    :config
+    (setq projectile-completion-system 'ivy))
+#+END_SRC
+
+Integrate it better with ivy
+
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel-projectile
+    :bind (("C-c C-p" . counsel-projectile)))
+#+END_SRC
+
+projectile-find-file is slow so use find-file-in-project instead.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package find-file-in-project
+    :bind ("C-x f" . find-file-in-project))t
+#+END_SRC
+
+* Keybindings
+
+Fix insertion of hash (this gets broken with meta/super remapping).
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+  (global-set-key (kbd "s-3") '(lambda () (interactive) (insert "#")))
+#+END_SRC
+
+Use windmove to change windows.
+
+#+BEGIN_SRC emacs-lisp
+  (windmove-default-keybindings)
+#+END_SRC
+
+Automatically indent newlines
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "RET") 'newline-and-indent)
+#+END_SRC
+
+Use ibuffer instead of list-buffers. (Why is this even the default?)
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+
+Full screen support.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
+#+END_SRC
+
+I like aligning things.
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c |") 'align-regexp)
+#+END_SRC
+
+** Guidekey
+
+Sometimes I get confused with complex key bindings. guidekey pops up a
+window to help me out by displaying all the options.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package guide-key
+    :diminish guide-key-mode
+    :init
+    (guide-key-mode t)
+    :config
+    (setq guide-key/guide-key-sequence '("C-c r" "C-c p" "C-x r"))
+    (setq guide-key/recursive-key-sequence-flag t))
+#+END_SRC
+
+* Searching
+
+Use ag to search in the current project.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ag
+    :bind (("s-s" . ag-project))
+    :config
+    (setq ag-highlight-search t))
+#+END_SRC
+
+* Ruby
+
+Use rbenv so we pick up the correct version of ruby for each project.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rbenv
+    :defines rbenv-show-active-ruby-in-modeline
+    :init
+    (setq rbenv-show-active-ruby-in-modeline nil)
+    (global-rbenv-mode)
+    :config
+    (rbenv-use-global))
+#+END_SRC
+
+Support various ruby-like files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode)
+  (use-package bundler)
+#+END_SRC
+
+Rubocop support.
+
+#+BEGIN_SRC emacs-lisp
+    (use-package rubocop
+      :diminish rubocop-mode)
+#+END_SRC
+
+rspec support.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rspec-mode)
+#+END_SRC
+
+Use seeing-is-believing to evaluate and display the result of ruby expressions.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package seeing-is-believing
+    :bind (:map ruby-mode-map
+                ("C-c C-c" . seeing-is-believing-run-as-xmpfilter)))
+#+END_SRC
+
+Configure ruby mode.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ruby-mode
+    :config
+    (add-hook 'ruby-mode-hook (lambda ()
+                                (if (rspec-buffer-is-spec-p)
+                                    (rspec-mode)
+                                  (rspec-verifiable-mode))))
+    (add-hook 'ruby-mode-hook 'rubocop-mode)
+    (add-hook 'ruby-mode-hook 'flycheck-mode)
+    (add-hook 'ruby-mode-hook 'flyspell-prog-mode)
+    (add-hook 'ruby-mode-hook 'electric-pair-mode)
+
+    ;; Calm aggressive indent
+    (add-to-list
+     'aggressive-indent-dont-indent-if
+     '(and (derived-mode-p 'ruby-mode)
+           (string-match "\\b\\(def\\|class\\)\\b"
+                         (thing-at-point 'line)))))
+#+END_SRC
+
+* Snippets
+
+Use yasnippets everywhere, but only use my snippet definitions.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :diminish yas-minor-mode
+    :init
+    (yas-global-mode 't)
+    :config
+    (setq yas-verbosity 0)
+    (setq yas-snippet-dirs '("/Users/jcinnamond/git/snippets")))
+#+END_SRC
+
+* All the little things
+
+Auto compile elisp-files
+
+#+BEGIN_SRC emacs-lisp
+  (use-package auto-compile
+    :init
+    (auto-compile-on-save-mode 1)
+    (auto-compile-on-load-mode 1))
+#+END_SRC
+
+Don't go 'beep' on the train
+
+#+BEGIN_SRC emacs-lisp
+  (setq ring-bell-function 'ignore)
+#+END_SRC
+
+Toggle between single and double quotes.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package toggle-quotes
+    :bind (("C-'" . toggle-quotes)))
+#+END_SRC
+
+Don't use a new frame for ediff as it doesn't work well with maximised
+emacs. Always vertically split so changes are side by side.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ediff
+    :config
+    (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+    (set-variable 'ediff-split-window-function 'split-window-horizontally))
+#+END_SRC
+
+Other things to split out
+
+#+BEGIN_SRC emacs-lisp
+  ;; Disambiguate buffer names
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+  ;; Jump between CamelCased words
+  (use-package subword
+     :init (global-subword-mode t)
+     :diminish subword-mode)
+
+  ;; Human readable file sizes in dired
+  (setq dired-listing-switches "-alh")
+
+  ;; Sentences do not need double spaces to end.  Period.
+  (set-default 'sentence-end-double-space nil)
+
+  ;; Auto refresh buffers
+  (global-auto-revert-mode 1)
+
+  (setq ispell-dictionary "en_GB")
+#+END_SRC
