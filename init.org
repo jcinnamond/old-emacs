@@ -12,7 +12,6 @@ compiled to speed up initialization time. Check out this quick
 
 ** TODO Ruby functions to create instance variables
 ** TODO Fix mode line
-** TODO Fix snippet loading
 ** TODO pairing mode
 ** TODO ruty
 ** TODO Server
@@ -479,14 +478,14 @@ Configure ruby mode.
 
 * Snippets
 
-Use yasnippets everywhere, but only use my snippet definitions.
+Use yasnippets everywhere. I override the default snippets by
+symlinking the ~/emacs.d/snippets directory.
 
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :diminish yas-minor-mode
     :init
     (yas-global-mode 't)
-    (setq yas-snippet-dirs '("/Users/jcinnamond/git/snippets"))
     :config
     (setq yas-verbosity 0))
 #+END_SRC

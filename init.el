@@ -214,7 +214,6 @@
   :diminish yas-minor-mode
   :init
   (yas-global-mode 't)
-  (setq yas-snippet-dirs '("/Users/jcinnamond/git/snippets"))
   :config
   (setq yas-verbosity 0))
 
