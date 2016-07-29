@@ -15,3 +15,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
   '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :foundry "nil" :family "Input")))))
+
+(load "~/git/el-presenti/el-presenti.elc")
+(load "~/git/el-presenti/el-presenti-edit-mode.elc")
+(add-to-list 'auto-mode-alist '("\\.presenti\\'" . el-presenti-edit-mode))

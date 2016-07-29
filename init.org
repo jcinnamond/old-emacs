@@ -14,7 +14,6 @@ compiled to speed up initialization time. Check out this quick
 ** TODO Fix mode line
 ** TODO Fix snippet loading
 ** TODO pairing mode
-** TODO el-presenti
 ** TODO ruty
 ** TODO Server
 ** TODO Autocompile on tangle of this file
@@ -487,9 +486,9 @@ Use yasnippets everywhere, but only use my snippet definitions.
     :diminish yas-minor-mode
     :init
     (yas-global-mode 't)
+    (setq yas-snippet-dirs '("/Users/jcinnamond/git/snippets"))
     :config
-    (setq yas-verbosity 0)
-    (setq yas-snippet-dirs '("/Users/jcinnamond/git/snippets")))
+    (setq yas-verbosity 0))
 #+END_SRC
 
 * All the little things
