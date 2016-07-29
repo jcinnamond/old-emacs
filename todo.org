@@ -1,30 +1,15 @@
 * Tasks
 ** TODO investigate using cask to manage packages
-** TODO ensure wrap-mode gets loaded with more modes
 ** TODO Skip uninteresting buffers with prev/next
 ** TODO Try to reduce free variable warnings when compiling config
-** TODO tidy up ruby config
-** DONE Snippets for rspec? (let, describe, it, subject)
-   CLOSED: [2015-04-24 Fri 21:49]
-** TODO Javascript mode
-** TODO HTML mode
-** TODO Treetop mode
-** TODO SCSS mode
-** TODO coffeescript/slim/haml/mustache ?
-** TODO feature mode (for cucumber)
-** DONE Haskell mode
-   CLOSED: [2015-04-24 Fri 21:53]
-** TODO Set compile command in Gemfiles to bundle install
 * Startup time
 ** TODO Autoload moar things
 ** DONE Remove the number of snippets loaded
    CLOSED: [2015-04-24 Fri 21:49]
 
-* Key clashes
-** DONE flyspell mode clashes with expand region (C-.)
-   CLOSED: [2015-04-11 Sat 12:47]
-** TODO org mode clashes with windmove (Shift + arrows)
 
 * Things to investigate
-** projectile
-** [[https://github.com/dgutov/robe][robe-mode]]
+
+** TODO web-mode
+
+** TODO guide-key

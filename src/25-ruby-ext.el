@@ -48,8 +48,14 @@
 (defun jc-ruby-param-seq (str)
   (let (params)
     (dolist (s (split-string str ","))
-      (push (s-trim s) params))
+      (push (jc-ruby-cleanup-param s) params))
     (reverse params)))
+
+(defun jc-ruby-cleanup-param (str)
+  (let ((param (s-trim str)))
+    (if (string-suffix-p ":" param)
+	(substring param 0 (- (length param) 1))
+      param)))
 
 (defun jc-ruby-param-string (str)
   (string-match "(\\([^)]*\\)" str)
