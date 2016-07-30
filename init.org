@@ -8,16 +8,13 @@ Some of this is stolen from [[http://mescal.imag.fr/membres/arnaud.legrand/misc/
 
 I 'tangle' the source code from here into an init file, that then gets
 compiled to speed up initialization time. Check out this quick
-[[https://justin.abrah.ms/emacs/literate_programming.html][introduction to tangling]].
+[[https://justin.abrah.ms/emacs/literate_programming.html][introduction to tangling]]. The local variables at the end of this file
+add a hook to tangle the file and then byte-compile the output.
 
 ** TODO Ruby functions to create instance variables
-** TODO Fix mode line
 ** TODO pairing mode
 ** TODO ruty
 ** TODO Server
-** TODO Autocompile on tangle of this file
-** TODO Switch back to helm, or work out how to add actions to ivy
-
 * Requirements
 
 - Emacs > 24.3
@@ -105,19 +102,16 @@ It's useful to highlight the matching parens, especially when writing elisp.
 
 ** Mode line
 
-I use smart mode line to make it prettier/easier to read, and then add
-some extra info:
-
-- line and column numbers
-- the date/time
-- battery info.
+I use smart mode line with a powerline theme to make it
+prettier/easier to read.
 
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package smart-mode-line
-  ;;   :config
-  ;;   (setq sml/no-confirm-load-theme t)
-  ;;   (sml/setup)
-  ;;   (sml/apply-theme 'powerline))
+  (use-package smart-mode-line
+    :functions sml/apply-theme
+    :config
+    (setq sml/no-confirm-load-theme t)
+    (sml/setup)
+    (sml/apply-theme 'powerline))
 #+END_SRC
 
 Don't show some modes in the modeline.
@@ -547,3 +541,9 @@ Other things to split out
 
   (setq ispell-dictionary "en_GB")
 #+END_SRC
+
+* File local variables
+
+# Local Variables:
+# eval: (add-hook 'after-save-hook (lambda () (org-babel-tangle) (byte-compile-file "init.el")) nil t)
+# End:

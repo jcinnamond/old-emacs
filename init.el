@@ -31,11 +31,12 @@
 (set-face-foreground 'show-paren-match "#d44")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
-;; (use-package smart-mode-line
-;;   :config
-;;   (setq sml/no-confirm-load-theme t)
-;;   (sml/setup)
-;;   (sml/apply-theme 'powerline))
+(use-package smart-mode-line
+  :functions sml/apply-theme
+  :config
+  (setq sml/no-confirm-load-theme t)
+  (sml/setup)
+  (sml/apply-theme 'powerline))
 
 (use-package flycheck
   :diminish flycheck-mode)
