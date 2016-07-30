@@ -478,13 +478,13 @@ Configure ruby mode.
 
 * Snippets
 
-Use yasnippets everywhere. I override the default snippets by
-symlinking the ~/emacs.d/snippets directory.
+Use yasnippets everywhere, but I don't want the default snippets.
 
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :diminish yas-minor-mode
     :init
+    (setq yas-snippet-dirs '("~/git/snippets"))
     (yas-global-mode 't)
     :config
     (setq yas-verbosity 0))

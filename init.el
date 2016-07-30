@@ -213,6 +213,7 @@
 (use-package yasnippet
   :diminish yas-minor-mode
   :init
+  (setq yas-snippet-dirs '("~/git/snippets"))
   (yas-global-mode 't)
   :config
   (setq yas-verbosity 0))
