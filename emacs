@@ -1,5 +1,5 @@
-(load "~/.emacs.d/secrets.el")
-(load "~/.emacs.d/init.elc")
+(load "~/.emacs.d/secrets")
+(load "~/.emacs.d/init")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -16,6 +16,6 @@
   ;; If there is more than one, they won't work right.
   '(default ((t (:inherit nil :stipple nil :background "#3F3F3F" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :foundry "nil" :family "Input")))))
 
-(load "~/git/el-presenti/el-presenti.elc")
-(load "~/git/el-presenti/el-presenti-edit-mode.elc")
+(load "~/git/el-presenti/el-presenti")
+(load "~/git/el-presenti/el-presenti-edit-mode")
 (add-to-list 'auto-mode-alist '("\\.presenti\\'" . el-presenti-edit-mode))
