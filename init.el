@@ -211,6 +211,11 @@
          (string-match "\\b\\(def\\|class\\)\\b"
                        (thing-at-point 'line)))))
 
+(use-package jc-ruby-extra
+  :bind (:map ruby-mode-map
+              ("C-c @" . jc-ruby-instance-variables)
+              ("C-<tab>" . jc-align-hash)))
+
 (use-package yasnippet
   :diminish yas-minor-mode
   :init

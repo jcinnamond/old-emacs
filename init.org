@@ -11,7 +11,6 @@ compiled to speed up initialization time. Check out this quick
 [[https://justin.abrah.ms/emacs/literate_programming.html][introduction to tangling]]. The local variables at the end of this file
 add a hook to tangle the file and then byte-compile the output.
 
-** TODO Ruby functions to create instance variables
 ** TODO pairing mode
 ** TODO ruty
 ** TODO Server
@@ -470,6 +469,16 @@ Configure ruby mode.
                          (thing-at-point 'line)))))
 #+END_SRC
 
+I've written some helper functions for ruby. They align hashes and
+automatically assign instance variables.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package jc-ruby-extra
+    :bind (:map ruby-mode-map
+                ("C-c @" . jc-ruby-instance-variables)
+                ("C-<tab>" . jc-align-hash)))
+#+END_SRC
+
 * Snippets
 
 Use yasnippets everywhere, but I don't want the default snippets.
@@ -543,6 +552,9 @@ Other things to split out
 #+END_SRC
 
 * File local variables
+
+This tangles (exports the code blocks) and byte compiles the output
+file on save.
 
 # Local Variables:
 # eval: (add-hook 'after-save-hook (lambda () (org-babel-tangle) (byte-compile-file "init.el")) nil t)
