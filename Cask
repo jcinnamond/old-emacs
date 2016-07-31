@@ -24,6 +24,7 @@
 (depends-on "magit")
 (depends-on "move-text")
 (depends-on "multiple-cursors")
+(depends-on "pair-mode" :git "https://github.com/jcinnamond/pair-mode")
 (depends-on "pallet")
 (depends-on "paradox")
 (depends-on "projectile")

@@ -11,7 +11,6 @@ compiled to speed up initialization time. Check out this quick
 [[https://justin.abrah.ms/emacs/literate_programming.html][introduction to tangling]]. The local variables at the end of this file
 add a hook to tangle the file and then byte-compile the output.
 
-** TODO pairing mode
 ** TODO ruty
 ** TODO Server
 * Requirements
@@ -501,6 +500,15 @@ everything is lovely.
 #+BEGIN_SRC emacs-lisp
   (use-package el-presenti-mode)
   (use-package el-presenti-edit-mode)
+#+END_SRC
+
+* Pair programming
+
+pair-mode is a set of ui tweaks to make pairing better, such as making
+the font larger and enabling line numbers.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package pair-mode)
 #+END_SRC
 
 * All the little things
