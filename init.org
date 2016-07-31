@@ -12,7 +12,7 @@ compiled to speed up initialization time. Check out this quick
 add a hook to tangle the file and then byte-compile the output.
 
 ** TODO ruty
-** TODO Server
+
 * Requirements
 
 - Emacs > 24.3
@@ -567,6 +567,18 @@ Other things to split out
   (global-auto-revert-mode 1)
 
   (setq ispell-dictionary "en_GB")
+#+END_SRC
+
+* Server
+
+Start server if running in graphical mode. This is lifted from
+the example in the [[https://github.com/jwiegley/use-package#conditional-loading][use-package documentation]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package server
+    :if window-system
+    :init
+    (server-start))
 #+END_SRC
 
 * File local variables
