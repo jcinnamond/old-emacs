@@ -9,6 +9,7 @@
 (depends-on "counsel")
 (depends-on "counsel-projectile")
 (depends-on "duplicate-thing")
+(depends-on "el-presenti" :git "https://github.com/jcinnamond/el-presenti")
 (depends-on "embrace")
 (depends-on "fill-column-indicator")
 (depends-on "find-file-in-project")
