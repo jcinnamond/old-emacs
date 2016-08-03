@@ -488,6 +488,21 @@ automatically assign instance variables.
                 ("C-<tab>" . jc-align-hash)))
 #+END_SRC
 
+* Javascript
+
+Eugh. Javascript. There is no nice mode, but I don't bother with it
+much so I just configure js-mode to be slightly more to my liking.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package js-mode
+    :defines js-indent-level
+    :init
+    (add-hook 'js-mode-hook (lambda ()
+                              (setq indent-tabs-mode nil)
+                              (setq js-indent-level 2)
+                              (electric-pair-mode))))
+#+END_SRC
+
 * Snippets
 
 Use yasnippets everywhere, but I don't want the default snippets.
