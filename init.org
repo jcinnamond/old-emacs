@@ -207,7 +207,7 @@ Allow simultaneous editing in multiple places with iedit and multiple cursors.
     :bind (("C-c ;" . mc/edit-lines)))
 #+END_SRC
 
-* Moving and duplicating lines
+* Moving, insertion, duplication, and deletion
 
 #+BEGIN_SRC emacs-lisp
   (use-package duplicate-thing
@@ -220,6 +220,16 @@ Use move-text to move lines around. I don't use the default bindings.
   (use-package move-text
     :bind (("M-S-<up>" . move-text-up)
            ("M-S-<down>" . move-text-down)))
+#+END_SRC
+
+I wrote some helpers to insert lines above/below, and to zap to the
+end of a buffer.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package jc-movements
+    :bind (("C-c o" . jc-line-below)
+           ("C-c C-o" . jc-line-above)
+           ("C-M-z" . jc-zap-rest-of-buffer)))
 #+END_SRC
 
 * Indentation

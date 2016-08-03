@@ -20,6 +20,7 @@
 (depends-on "guide-key")
 (depends-on "iedit")
 (depends-on "ivy-hydra")
+(depends-on "jc-movements" :git "https://github.com/jcinnamond/jc-movements")
 (depends-on "jc-ruby-extra" :git "https://github.com/jcinnamond/jc-ruby-extra")
 (depends-on "magit")
 (depends-on "move-text")
