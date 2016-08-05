@@ -615,6 +615,17 @@ the example in the [[https://github.com/jwiegley/use-package#conditional-loading
     (server-start))
 #+END_SRC
 
+* Undo
+
+I mostly just use this for a handy 'redo' binding, but the tree can be
+useful for undoing large chunks of stuff.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package undo-tree
+    :init
+    (global-undo-tree-mode 1))
+#+END_SRC
+
 * File local variables
 
 This tangles (exports the code blocks) and byte compiles the output
