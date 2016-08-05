@@ -6,6 +6,7 @@
 (depends-on "aggressive-indent")
 (depends-on "auto-compile")
 (depends-on "bundler")
+(depends-on "comment-dwim-2")
 (depends-on "counsel")
 (depends-on "counsel-projectile")
 (depends-on "duplicate-thing")

@@ -414,6 +414,15 @@ Use ag to search in the current project.
     (setq ag-highlight-search t))
 #+END_SRC
 
+* Comments
+
+I use comment-dwim-2 so that I can comment out lines or regions.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package comment-dwim-2
+    :bind (("M-;" . comment-dwim-2)))
+#+END_SRC
+
 * Ruby
 
 Use rbenv so we pick up the correct version of ruby for each project.
