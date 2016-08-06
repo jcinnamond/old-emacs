@@ -503,7 +503,7 @@ Eugh. Javascript. There is no nice mode, but I don't bother with it
 much so I just configure js-mode to be slightly more to my liking.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package js-mode
+  (use-package js
     :defines js-indent-level
     :init
     (add-hook 'js-mode-hook (lambda ()
