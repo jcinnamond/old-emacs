@@ -519,6 +519,16 @@ much so I just configure js-mode to be slightly more to my liking.
 #+END_SRC
 
 * Emacs lisp
+
+I often want to evaluate a buffer when writing new modes, so this adds
+a handy keybinding for it:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package emacs-lisp
+    :bind (:map emacs-lisp-mode-map
+           ("C-c C-c" . eval-buffer)))
+#+END_SRC
+
 * Snippets
 
 Use yasnippets everywhere, but I don't want the default snippets.
