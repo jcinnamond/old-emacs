@@ -399,7 +399,7 @@ window to help me out by displaying all the options.
     :init
     (guide-key-mode t)
     :config
-    (setq guide-key/guide-key-sequence '("C-c r" "C-c p" "C-x r"))
+    (setq guide-key/guide-key-sequence '("C-c r" "C-c p" "C-x r" "C-c C-f"))
     (setq guide-key/recursive-key-sequence-flag t))
 #+END_SRC
 
@@ -512,6 +512,13 @@ much so I just configure js-mode to be slightly more to my liking.
                               (electric-pair-mode))))
 #+END_SRC
 
+* Go
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode)
+#+END_SRC
+
+* Emacs lisp
 * Snippets
 
 Use yasnippets everywhere, but I don't want the default snippets.

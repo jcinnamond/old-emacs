@@ -18,6 +18,8 @@
 (depends-on "gitconfig-mode")
 (depends-on "github-browse-file")
 (depends-on "gitignore-mode")
+(depends-on "go-mode")
+(depends-on "go-playground")
 (depends-on "guide-key")
 (depends-on "iedit")
 (depends-on "ivy")
