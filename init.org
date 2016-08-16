@@ -514,8 +514,23 @@ much so I just configure js-mode to be slightly more to my liking.
 
 * Go
 
+Use go-projectile to run code, tests, etc.
+
 #+BEGIN_SRC emacs-lisp
-  (use-package go-mode)
+  (use-package go-projectile)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode
+    :init
+    (setq exec-path (append exec-path '("~/go/bin")))
+    :bind (:map go-mode-map
+                ("C-c , v" . projectile-test-project))
+    :config
+    (add-hook 'go-mode-hook (lambda ()
+                              (setq tab-width 4)
+                              (electric-pair-mode t)))
+    (add-hook 'before-save-hook 'gofmt-before-save))
 #+END_SRC
 
 * Emacs lisp
