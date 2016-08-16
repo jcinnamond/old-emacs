@@ -574,7 +574,8 @@ pair-mode is a set of ui tweaks to make pairing better, such as making
 the font larger and enabling line numbers.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package pair-mode)
+  (use-package pair-mode
+    :bind (("C-M-p" . pair-mode)))
 #+END_SRC
 
 * All the little things
