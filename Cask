@@ -5,6 +5,7 @@
 (depends-on "ag")
 (depends-on "aggressive-indent")
 (depends-on "auto-compile")
+(depends-on "avy")
 (depends-on "bundler")
 (depends-on "comment-dwim-2")
 (depends-on "counsel")

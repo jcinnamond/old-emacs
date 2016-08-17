@@ -290,13 +290,6 @@ want. Helm is more powerful but not as quick.
     (setq ivy-count-format "(%d/%d) "))
 #+END_SRC
 
-Use swiper in place of isearch.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package swiper
-    :bind (("C-s" . swiper)))
-#+END_SRC
-
 Use ivy enhancements for various emacs commands.
 
 #+BEGIN_SRC emacs-lisp
@@ -305,6 +298,8 @@ Use ivy enhancements for various emacs commands.
            ("C-x C-f" . counsel-find-file)
            ("C-c k" . counsel-ag)))
 #+END_SRC
+
+See searching for swiper and counsel-ag configuration.
 
 * Git
 
@@ -404,6 +399,28 @@ window to help me out by displaying all the options.
 #+END_SRC
 
 * Searching
+
+** Local file searching
+
+I'm starting to use avy to jump to positions in a file, being able to
+switch to it when using isearch.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :bind (:map isearch-mode-map
+                ("C-'" . avy-isearch)))
+#+END_SRC
+
+Swiper acts like loccur - showing me a list of lines matching a search.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :bind (:map isearch-mode-map
+                ("C-s" . swiper-from-isearch)))
+#+END_SRC
+
+
+** Searching projects
 
 Use ag to search in the current project.
 
