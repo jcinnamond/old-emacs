@@ -31,6 +31,7 @@
 (depends-on "jc-ruby-extra" :git "https://github.com/jcinnamond/jc-ruby-extra")
 (depends-on "magit")
 (depends-on "magit-popup")
+(depends-on "markdown-mode")
 (depends-on "move-text")
 (depends-on "multiple-cursors")
 (depends-on "package-build")

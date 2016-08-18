@@ -440,7 +440,8 @@ I use comment-dwim-2 so that I can comment out lines or regions.
     :bind (("M-;" . comment-dwim-2)))
 #+END_SRC
 
-* Ruby
+* Langauges and markup
+** Ruby
 
 Use rbenv so we pick up the correct version of ruby for each project.
 
@@ -514,7 +515,7 @@ automatically assign instance variables.
                 ("C-<tab>" . jc-align-hash)))
 #+END_SRC
 
-* Javascript
+** Javascript
 
 Eugh. Javascript. There is no nice mode, but I don't bother with it
 much so I just configure js-mode to be slightly more to my liking.
@@ -529,7 +530,7 @@ much so I just configure js-mode to be slightly more to my liking.
                               (electric-pair-mode))))
 #+END_SRC
 
-* Go
+** Go
 
 Use go-projectile to run code, tests, etc.
 
@@ -550,7 +551,7 @@ Use go-projectile to run code, tests, etc.
     (add-hook 'before-save-hook 'gofmt-before-save))
 #+END_SRC
 
-* Emacs lisp
+** Emacs lisp
 
 I often want to evaluate a buffer when writing new modes, so this adds
 a handy keybinding for it:
@@ -559,6 +560,18 @@ a handy keybinding for it:
   (use-package emacs-lisp
     :bind (:map emacs-lisp-mode-map
            ("C-c C-c" . eval-buffer)))
+#+END_SRC
+
+** Markdown
+
+Use spell checking and text wrapping with markdown.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :config
+    (add-hook 'markdown-mode-hook (lambda ()
+                                    (flyspell-mode)
+                                    (auto-fill-mode))))
 #+END_SRC
 
 * Snippets
