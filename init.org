@@ -100,27 +100,24 @@ It's useful to highlight the matching parens, especially when writing elisp.
 
 ** Mode line
 
-I use smart mode line with a powerline theme to make it
-prettier/easier to read.
+Spaceline provides spacemacs modeline as a standalone package.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package smart-mode-line
-    :functions sml/apply-theme
+  (use-package spaceline-config
     :config
-    (setq sml/no-confirm-load-theme t)
-    (sml/setup)
-    (sml/apply-theme 'powerline))
+    (spaceline-emacs-theme)
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified))
 #+END_SRC
 
 Don't show some modes in the modeline.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :diminish flycheck-mode)
-  (use-package flyspell
-    :diminish flyspell-mode
+  (use-package diminish
     :config
-    (bind-key (kbd "C-;") nil flyspell-mode-map))
+    (diminish 'flycheck-mode)
+    (diminish 'flyspell-mode)
+    (diminish 'auto-fill-function)
+    (diminish 'auto-revert-mode))
 #+END_SRC
 
 ** Coding styles
@@ -381,6 +378,14 @@ I like aligning things.
 
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c |") 'align-regexp)
+#+END_SRC
+
+I use the default flyspell binding for iedit.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flyspell
+    :config
+    (bind-key (kbd "C-;") nil flyspell-mode-map))
 #+END_SRC
 
 ** Guidekey
@@ -685,6 +690,7 @@ useful for undoing large chunks of stuff.
 
 #+BEGIN_SRC emacs-lisp
   (use-package undo-tree
+    :diminish undo-tree-mode
     :init
     (global-undo-tree-mode 1))
 #+END_SRC

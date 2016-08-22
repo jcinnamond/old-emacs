@@ -46,6 +46,7 @@
 (depends-on "seeing-is-believing")
 (depends-on "smart-mode-line")
 (depends-on "smart-mode-line-powerline-theme")
+(depends-on "spaceline")
 (depends-on "swiper")
 (depends-on "toggle-quotes")
 (depends-on "undo-tree")
