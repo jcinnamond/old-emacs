@@ -115,9 +115,11 @@ Don't show some modes in the modeline.
   (use-package diminish
     :config
     (diminish 'flycheck-mode)
-    (diminish 'flyspell-mode)
     (diminish 'auto-fill-function)
     (diminish 'auto-revert-mode))
+
+  (use-package flyspell-mode
+    :diminish flyspell-mode)
 #+END_SRC
 
 ** Coding styles
