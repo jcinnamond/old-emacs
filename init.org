@@ -12,6 +12,12 @@ compiled to speed up initialization time. Check out this quick
 add a hook to tangle the file and then byte-compile the output.
 
 ** TODO ruty
+** TODO add bindings to counsel-find-file for 'open in other window'
+** TODO add time to modeline
+** TODO Make previous-buffer and next-buffer more predictable
+** TODO Better window arrangement support
+Maybe support switch from horizontal to vertical split.
+
 
 * Requirements
 
@@ -426,7 +432,6 @@ Swiper acts like loccur - showing me a list of lines matching a search.
     :bind (:map isearch-mode-map
                 ("C-'" . swiper-from-isearch)))
 #+END_SRC
-
 
 ** Searching projects
 
