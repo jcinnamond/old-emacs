@@ -237,6 +237,29 @@ end of a buffer.
            ("C-M-z" . jc-zap-rest-of-buffer)))
 #+END_SRC
 
+* Windows
+
+Use swap-buffers to swap between windows.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package swap-buffers
+    :bind
+    ("C-c b" . swap-buffers))
+#+END_SRC
+
+Use purpose to keep types of buffer in the same buffer.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package window-purpose
+    :init (purpose-mode))
+#+END_SRC
+
+Use windmove to change windows.
+
+#+BEGIN_SRC emacs-lisp
+  (windmove-default-keybindings)
+#+END_SRC
+
 * Indentation
 
 Two spaces is enough for anyone.
@@ -356,12 +379,6 @@ Fix insertion of hash (this gets broken with meta/super remapping).
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
   (global-set-key (kbd "s-3") '(lambda () (interactive) (insert "#")))
-#+END_SRC
-
-Use windmove to change windows.
-
-#+BEGIN_SRC emacs-lisp
-  (windmove-default-keybindings)
 #+END_SRC
 
 Automatically indent newlines
