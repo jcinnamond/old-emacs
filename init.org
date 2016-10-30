@@ -239,6 +239,14 @@ end of a buffer.
 
 * Windows
 
+Use switch-window for easier target window selection.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package switch-window
+    :bind
+    ("C-x o" . switch-window))
+#+END_SRC
+
 Use swap-buffers to swap between windows.
 
 #+BEGIN_SRC emacs-lisp
