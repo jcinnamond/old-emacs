@@ -25,36 +25,12 @@ Maybe support switch from horizontal to vertical split.
 - Cask
 - pallet
 
-* macOS integrations
-
-The meta key is awkward to reach on a mac keyboard, so I've swapped it
-with cmd (super). I'm doing this as early as possible so that it still
-remaps the keys even if the rest of the config contains errors.
-
-#+BEGIN_SRC emacs-lisp
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super)
-#+END_SRC
-
-Stupid mac os-x uk keyboard # problems with emacsclient.
-
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c 0") 'server-edit)
-  (global-set-key (kbd "C-c w") 'delete-frame)
-#+END_SRC
-
-Allow emacs to find programs install by homebrew.
-
-#+BEGIN_SRC emacs-lisp
-  (setq exec-path (append exec-path '("/usr/local/bin")))
-#+END_SRC
-
 * Packages
 
 Use cask to manage dependencies. I installed Cask via homebrew.
 
 #+BEGIN_SRC emacs-lisp
-  (require 'cask "/usr/local/Cellar/cask/0.7.4/cask.el")
+  (require 'cask "~/.cask/cask.el")
   (cask-initialize)
 #+END_SRC
 
@@ -125,7 +101,11 @@ Don't show some modes in the modeline.
     (diminish 'auto-revert-mode))
 
   (use-package flyspell-mode
-    :diminish flyspell-mode)
+    :diminish flyspell-mode
+    :config
+    (setq ispell-local-dictionary "en_GB")
+    (setq ispell-local-dictionary-alist
+          '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8))))
 #+END_SRC
 
 ** Coding styles
@@ -361,23 +341,9 @@ Use projectile to manage projects.
 
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
-    :init (projectile-global-mode)
+    :init (projectile-mode)
     :config
     (setq projectile-completion-system 'ivy))
-#+END_SRC
-
-Integrate it better with ivy
-
-#+BEGIN_SRC emacs-lisp
-  (use-package counsel-projectile
-    :bind (("C-c C-p" . counsel-projectile)))
-#+END_SRC
-
-projectile-find-file is slow so use find-file-in-project instead.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package find-file-in-project
-    :bind ("C-x f" . find-file-in-project))t
 #+END_SRC
 
 * Keybindings
@@ -480,18 +446,6 @@ I use comment-dwim-2 so that I can comment out lines or regions.
 
 * Langauges and markup
 ** Ruby
-
-Use rbenv so we pick up the correct version of ruby for each project.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package rbenv
-    :defines rbenv-show-active-ruby-in-modeline
-    :init
-    (setq rbenv-show-active-ruby-in-modeline nil)
-    (global-rbenv-mode)
-    :config
-    (rbenv-use-global))
-#+END_SRC
 
 Support various ruby-like files.
 
@@ -700,8 +654,6 @@ Other things to split out
 
   ;; Auto refresh buffers
   (global-auto-revert-mode 1)
-
-  (setq ispell-dictionary "en_GB")
 #+END_SRC
 
 * Server
