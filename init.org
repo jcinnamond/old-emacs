@@ -239,7 +239,33 @@ Use purpose to keep types of buffer in the same buffer.
 
 #+BEGIN_SRC emacs-lisp
   (use-package window-purpose
-    :init (purpose-mode))
+    :init (purpose-mode)
+    :config
+    (add-to-list 'purpose-user-regexp-purposes '("_spec.rb$" . test))
+    (add-to-list 'purpose-user-mode-purposes '(ruby-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(emacs-lisp-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(org-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(magit-mode . tr))
+    (add-to-list 'purpose-user-mode-purposes '(dired-mode . tr))
+    (add-to-list 'purpose-user-mode-purposes '(compilation-mode . tr))
+    (add-to-list 'purpose-user-mode-purposes '(help-mode . br))
+    (add-to-list 'purpose-user-mode-purposes '(special-mode . br))
+
+    (setq purpose-use-default-configuration nil)
+    (purpose-compile-user-configuration))
+
+  (use-package window-purpose-x
+    :config
+    (purpose-x-magit-single-on)
+    (purpose-x-golden-ratio-setup))
+#+END_SRC
+
+Golden Ratio makes the current window bigger.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package golden-ratio
+    :diminish golden-ratio-mode
+    :init (golden-ratio-mode))
 #+END_SRC
 
 Use windmove to change windows.
