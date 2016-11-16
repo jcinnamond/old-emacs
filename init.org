@@ -219,12 +219,17 @@ end of a buffer.
 
 * Windows
 
-Use switch-window for easier target window selection.
+Use switch-window for easier target window selection. It doesn't play
+nicely with golden ratio, so encourage it to reset the ratio after
+switching.
 
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window
     :bind
-    ("C-x o" . switch-window))
+    ("C-x o" . switch-window)
+    :config
+    (setq switch-window-shortcut-style 'qwerty)
+    (defadvice switch-window (after switch-window activate) (golden-ratio)))
 #+END_SRC
 
 Use swap-buffers to swap between windows.
@@ -240,6 +245,7 @@ Use purpose to keep types of buffer in the same buffer.
 #+BEGIN_SRC emacs-lisp
   (use-package window-purpose
     :init (purpose-mode)
+    :bind ("C-c , l" . purpose-load-window-layout)
     :config
     (add-to-list 'purpose-user-regexp-purposes '("_spec.rb$" . test))
     (add-to-list 'purpose-user-mode-purposes '(ruby-mode . edit))
@@ -257,7 +263,8 @@ Use purpose to keep types of buffer in the same buffer.
   (use-package window-purpose-x
     :config
     (purpose-x-magit-single-on)
-    (purpose-x-golden-ratio-setup))
+    (purpose-x-golden-ratio-setup)
+    (purpose-x-kill-setup))
 #+END_SRC
 
 Golden Ratio makes the current window bigger.
