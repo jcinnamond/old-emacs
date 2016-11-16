@@ -413,19 +413,18 @@ I use the default flyspell binding for iedit.
     (bind-key (kbd "C-;") nil flyspell-mode-map))
 #+END_SRC
 
-** Guidekey
+** which-key
 
-Sometimes I get confused with complex key bindings. guidekey pops up a
+Sometimes I get confused with complex key bindings. which-key pops up a
 window to help me out by displaying all the options.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package guide-key
-    :diminish guide-key-mode
+  (use-package which-key
+    :diminish which-key-mode
     :init
-    (guide-key-mode t)
+    (which-key-mode t)
     :config
-    (setq guide-key/guide-key-sequence '("C-c r" "C-c p" "C-x r" "C-c C-f"))
-    (setq guide-key/recursive-key-sequence-flag t))
+    (which-key-setup-side-window-right-bottom))
 #+END_SRC
 
 * Searching
