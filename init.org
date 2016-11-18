@@ -389,6 +389,11 @@ Use projectile to manage projects.
     :init (projectile-mode)
     :config
     (setq projectile-completion-system 'ivy))
+
+  (use-package projectile-rails
+    :diminish projectile-rails-mode
+    :init
+    (setq projectile-rails-expand-snippet nil))
 #+END_SRC
 
 * Keybindings
