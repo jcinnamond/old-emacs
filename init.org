@@ -249,8 +249,12 @@ Use purpose to keep types of buffer in the same buffer.
     :config
     (add-to-list 'purpose-user-regexp-purposes '("_spec.rb$" . test))
     (add-to-list 'purpose-user-mode-purposes '(ruby-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(yaml-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(emacs-lisp-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(org-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(html-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(scss-mode . edit))
+    (add-to-list 'purpose-user-mode-purposes '(css-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(magit-mode . tr))
     (add-to-list 'purpose-user-mode-purposes '(dired-mode . tr))
     (add-to-list 'purpose-user-mode-purposes '(compilation-mode . tr))
