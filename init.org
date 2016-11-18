@@ -167,6 +167,12 @@ Don't create lockfiles in the current directory.
   (setq create-lockfiles nil)
 #+END_SRC
 
+Rename the file and buffer without having to do a dired shuffle.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package buffer-file-utils)
+#+END_SRC
+
 * Selection
 
 Allow narrowing.
