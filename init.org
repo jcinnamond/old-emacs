@@ -343,6 +343,14 @@ want. Helm is more powerful but not as quick.
     (setq ivy-count-format "(%d/%d) "))
 #+END_SRC
 
+Ivy can use recentf to show recently closed buffers. It's a good idea
+to load this so that it works.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package recentf
+    :init (recentf-mode 1))
+#+END_SRC
+
 Use ivy enhancements for various emacs commands.
 
 #+BEGIN_SRC emacs-lisp
