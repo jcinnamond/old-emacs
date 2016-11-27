@@ -659,8 +659,8 @@ el-presenti is pretty awful but it kinda works so let's just pretend
 everything is lovely.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package el-presenti-mode)
-  (use-package el-presenti-edit-mode)
+  ;; (use-package el-presenti-mode)
+  ;; (use-package el-presenti-edit-mode)
 #+END_SRC
 
 * Pair programming
