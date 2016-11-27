@@ -100,12 +100,8 @@ Don't show some modes in the modeline.
     (diminish 'auto-fill-function)
     (diminish 'auto-revert-mode))
 
-  (use-package flyspell-mode
-    :diminish flyspell-mode
-    :config
-    (setq ispell-local-dictionary "en_GB")
-    (setq ispell-local-dictionary-alist
-          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8))))
+  (use-package flyspell
+    :diminish flyspell-mode)
 #+END_SRC
 
 ** Coding styles
@@ -136,6 +132,15 @@ Add a visible marker at column 80.
     (setq fci-rule-column 80)
     (setq fci-rule-width 3)
     (setq fci-rule-use-dashes 't))
+#+END_SRC
+
+* Spell checking
+
+The default LANG under windows doesn't match the hunspell dictionary
+name.
+
+#+BEGIN_SRC emacs-lisp
+  (setenv "LANG" "en_GB")
 #+END_SRC
 
 * File related
