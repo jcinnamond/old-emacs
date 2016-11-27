@@ -527,7 +527,8 @@ Rubocop support.
 rspec support.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rspec-mode)
+  (use-package rspec-mode
+    :diminish rspec-mode)
 #+END_SRC
 
 Use seeing-is-believing to evaluate and display the result of ruby expressions.
