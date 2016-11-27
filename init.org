@@ -11,13 +11,14 @@ compiled to speed up initialization time. Check out this quick
 [[https://justin.abrah.ms/emacs/literate_programming.html][introduction to tangling]]. The local variables at the end of this file
 add a hook to tangle the file and then byte-compile the output.
 
-** TODO ruty
+* Bugs
+
+** TODO recentf
+
+* Todo
+
 ** TODO add bindings to counsel-find-file for 'open in other window'
 ** TODO add time to modeline
-** TODO Make previous-buffer and next-buffer more predictable
-** TODO Better window arrangement support
-Maybe support switch from horizontal to vertical split.
-
 
 * Requirements
 
