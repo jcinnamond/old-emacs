@@ -525,11 +525,10 @@ Rubocop support.
       :diminish rubocop-mode)
 #+END_SRC
 
-rspec support.
+Run specs through docker.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rspec-mode
-    :diminish rspec-mode)
+  (use-package dockspec)
 #+END_SRC
 
 Use seeing-is-believing to evaluate and display the result of ruby expressions.
@@ -546,9 +545,9 @@ Configure ruby mode.
   (use-package ruby-mode
     :config
     (add-hook 'ruby-mode-hook (lambda ()
-                                (if (rspec-buffer-is-spec-p)
-                                    (rspec-mode)
-                                  (rspec-verifiable-mode))))
+                                (if (buffer-file-name)
+                                    (if (string-match "_spec\\.rb\\'" buffer-file-name)
+                                        (dockspec)))))
     (add-hook 'ruby-mode-hook 'rubocop-mode)
     (add-hook 'ruby-mode-hook 'flycheck-mode)
     (add-hook 'ruby-mode-hook 'flyspell-prog-mode)
@@ -673,6 +672,21 @@ the font larger and enabling line numbers.
 #+BEGIN_SRC emacs-lisp
   (use-package pair-mode
     :bind (("C-M-p" . pair-mode)))
+#+END_SRC
+
+* Docker
+
+A mode to edit dockerfiles
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dockerfile-mode)
+#+END_SRC
+
+Manage docker instances and images from emacs too.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package docker
+    :init (docker-global-mode))
 #+END_SRC
 
 * All the little things
