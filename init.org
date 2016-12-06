@@ -578,7 +578,10 @@ well with fci-mode.
   (use-package web-mode
     :init (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
     :config
-    (add-hook 'web-mode-hook (lambda () (turn-off-fci-mode))))
+    (add-hook 'web-mode-hook (lambda ()
+                               (turn-off-fci-mode)
+                               (flyspell-mode 1)
+                               (setq indent-tabs-mode nil))))
 #+END_SRC
 
 ** Javascript
