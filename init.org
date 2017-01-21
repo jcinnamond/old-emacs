@@ -59,6 +59,14 @@ package-list-packages.
     (setq paradox-automatically-star t))
 #+END_SRC
 
+* OS specific
+
+Try to avoid using dos line endings.
+
+#+BEGIN_SRC emacs-lisp
+  (prefer-coding-system 'utf-8-unix)
+#+END_SRC
+
 * Appearance
 
 I like to strip back the UI and use a low contrast dark theme.
