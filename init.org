@@ -649,6 +649,19 @@ Use spell checking and text wrapping with markdown.
                                     (auto-fill-mode))))
 #+END_SRC
 
+** Haskell
+
+Use dante https://github.com/jyp/dante for a better haskell experience.
+
+#+BEGIN_SRC emacs-lisp
+(use-package dante
+  :ensure t
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  (add-hook 'haskell-mode-hook 'flycheck-mode))
+#+END_SRC
+
 * Snippets
 
 Use yasnippets everywhere, but I don't want the default snippets.
