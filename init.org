@@ -508,7 +508,7 @@ I use comment-dwim-2 so that I can comment out lines or regions.
     :bind (("M-;" . comment-dwim-2)))
 #+END_SRC
 
-* Langauges and markup
+* Languages and markup
 ** Ruby
 
 Support various ruby-like files.
@@ -597,6 +597,12 @@ much so I just configure js-mode to be slightly more to my liking.
                               (setq indent-tabs-mode nil)
                               (setq js-indent-level 2)
                               (electric-pair-mode))))
+#+END_SRC
+
+Some people use coffeescript, so let's support that too.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package coffee-mode)
 #+END_SRC
 
 ** Go
