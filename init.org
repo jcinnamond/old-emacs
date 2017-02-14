@@ -639,12 +639,18 @@ Use go-projectile to run code, tests, etc.
   (use-package go-projectile)
 #+END_SRC
 
+Use jc-gorun to run the current file and add any output as a comment.
+#+BEGIN_SRC emacs-lisp
+  (use-package jc-gorun)
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :init
     (setq exec-path (append exec-path '("~/go/bin")))
     :bind (:map go-mode-map
-                ("C-c , v" . projectile-test-project))
+                ("C-c , v" . projectile-test-project)
+                ("C-c C-c" . jc-gorun-run))
     :config
     (add-hook 'go-mode-hook (lambda ()
                               (setq tab-width 4)
