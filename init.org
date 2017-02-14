@@ -536,7 +536,10 @@ Rubocop support.
 Run specs through docker.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package dockspec)
+  (use-package dockspec
+    :config
+    (add-hook 'ruby-mode-hook (lambda()
+                                (yas-activate-extra-mode 'dockspec))))
 #+END_SRC
 
 Use seeing-is-believing to evaluate and display the result of ruby expressions.
@@ -551,6 +554,8 @@ Configure ruby mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package ruby-mode
+    :bind (:map ruby-mode-map
+                ("C-c , r" . dockspec-rerun))
     :config
     (add-hook 'ruby-mode-hook (lambda ()
                                 (if (buffer-file-name)
