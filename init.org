@@ -69,6 +69,15 @@ Try to avoid using dos line endings.
 
 * Appearance
 
+Set the default font.
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil
+                      :family "InputMono"
+                      :height 120)
+
+#+END_SRC
+
 I like to strip back the UI and use a low contrast dark theme.
 
 #+BEGIN_SRC emacs-lisp
@@ -77,7 +86,17 @@ I like to strip back the UI and use a low contrast dark theme.
   (menu-bar-mode 0)
   (scroll-bar-mode 0)
 
-  (load-theme 'zenburn t)
+  (load-theme 'nord t)
+#+END_SRC
+
+I find comments hard to read with the nord, so I override the comment
+face to make it more readable.
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'font-lock-comment-face nil
+                      :foreground "#81A1C1")
+  (set-face-attribute 'vertical-border nil
+                      :foreground "#EBCB8B")
 #+END_SRC
 
 It's useful to highlight the matching parens, especially when writing elisp.
