@@ -90,13 +90,14 @@ I like to strip back the UI and use a low contrast dark theme.
 #+END_SRC
 
 I find comments hard to read with the nord, so I override the comment
-face to make it more readable.
+face to make it more readable. I also make the vertical border a bit
+easier to see.
 
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'font-lock-comment-face nil
-                      :foreground "#81A1C1")
+                      :foreground "#81A1C1") ; nord9
   (set-face-attribute 'vertical-border nil
-                      :foreground "#EBCB8B")
+                      :foreground "#EBCB8B") ; nord13
 #+END_SRC
 
 It's useful to highlight the matching parens, especially when writing elisp.
