@@ -648,7 +648,7 @@ Indentation for css mode applies to scss mode too
 
 #+BEGIN_SRC emacs-lisp
   (use-package scss
-    :config
+    :init
     (setq css-indent-offset 2))
 #+END_SRC
 
