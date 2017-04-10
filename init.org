@@ -504,7 +504,7 @@ switch to it when using isearch.
 
 #+BEGIN_SRC emacs-lisp
   (use-package avy
-    :bind (("C-\\" . avy-goto-char-2)
+    :bind (("C-\\" . avy-goto-char-timer)
            :map isearch-mode-map
            ("C-\\" . avy-isearch)))
 #+END_SRC
