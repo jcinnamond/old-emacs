@@ -343,6 +343,8 @@ Use aggressive indent for reindenting code as you type.
     :init
     (aggressive-indent-global-mode)
     (add-to-list 'aggressive-indent-excluded-modes 'idris-mode)
+    (add-to-list 'aggressive-indent-excluded-modes 'make-mode)
+    (add-to-list 'aggressive-indent-excluded-modes 'yaml-mode)
     (add-to-list 'aggressive-indent-excluded-modes 'web-mode))
 #+END_SRC
 
