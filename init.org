@@ -396,13 +396,13 @@ want. Helm is more powerful but not as quick.
 
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
-    :bind (("C-c C-r" . ivy-resume))
     :diminish ivy-mode
     :init
     (ivy-mode 1)
     (setq ivy-height 20)
-    (setq ivy-use-virtual-buffers t)
+    (setq ivy-use-virtual-buffers nil)
     (setq ivy-count-format "(%d/%d) "))
+  (use-package ivy-hydra)
 #+END_SRC
 
 Ivy can use recentf to show recently closed buffers. It's a good idea
