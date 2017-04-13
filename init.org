@@ -521,13 +521,15 @@ window to help me out by displaying all the options.
 ** Local file searching
 
 I'm starting to use avy to jump to positions in a file, being able to
-switch to it when using isearch.
+switch to it when using isearch. It also provides a handy replacement
+to goto-line.
 
 #+BEGIN_SRC emacs-lisp
   (use-package avy
-    :bind (("C-\\" . avy-goto-char-timer)
+    :bind (("C-]" . avy-goto-char-timer)
            :map isearch-mode-map
-           ("C-\\" . avy-isearch)))
+           ("C-]" . avy-isearch)
+           ("M-g g" . avy-goto-line)))
 #+END_SRC
 
 Swiper acts like loccur - showing me a list of lines matching a search.
