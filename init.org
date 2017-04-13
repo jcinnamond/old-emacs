@@ -450,7 +450,10 @@ Use projectile to manage projects.
   (use-package projectile
     :init (projectile-mode)
     :config
-    (setq projectile-completion-system 'ivy))
+    (setq projectile-completion-system 'ivy)
+    (ivy-set-actions
+     'projectile-switch-project
+     '(("g" projectile-vc "git"))))
 
   (use-package projectile-rails
     :diminish projectile-rails-mode
