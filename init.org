@@ -363,7 +363,8 @@ Use aggressive indent for reindenting code as you type.
     (add-to-list 'aggressive-indent-excluded-modes 'idris-mode)
     (add-to-list 'aggressive-indent-excluded-modes 'make-mode)
     (add-to-list 'aggressive-indent-excluded-modes 'yaml-mode)
-    (add-to-list 'aggressive-indent-excluded-modes 'web-mode))
+    (add-to-list 'aggressive-indent-excluded-modes 'web-mode)
+    (add-to-list 'aggressive-indent-excluded-modes 'elm-mode))
 #+END_SRC
 
 * Org mode
@@ -736,6 +737,14 @@ Use dante https://github.com/jyp/dante for a better haskell experience.
   :init
   (add-hook 'haskell-mode-hook 'dante-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
+#+END_SRC
+
+** Elm
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elm-mode
+    :config
+    (setq elm-indent-offset 2))
 #+END_SRC
 
 * Snippets
