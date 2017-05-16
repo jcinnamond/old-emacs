@@ -28,7 +28,7 @@ add a hook to tangle the file and then byte-compile the output.
 
 * Packages
 
-Use cask to manage dependencies. I installed Cask via homebrew.
+Use cask to manage dependencies.
 
 #+BEGIN_SRC emacs-lisp
   (require 'cask "~/.cask/cask.el")
