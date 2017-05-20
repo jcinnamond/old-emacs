@@ -742,9 +742,7 @@ Use dante https://github.com/jyp/dante for a better haskell experience.
 ** Elm
 
 #+BEGIN_SRC emacs-lisp
-  (use-package elm-mode
-    :config
-    (setq elm-indent-offset 2))
+  (use-package elm-mode)
 #+END_SRC
 
 * Snippets
