@@ -603,6 +603,7 @@ Configure ruby mode.
                 ("C-c , r" . dockspec-rerun))
     :config
     (add-hook 'ruby-mode-hook (lambda ()
+                                (setq ruby-align-chained-calls t)
                                 (if (buffer-file-name)
                                     (if (string-match "_spec\\.rb\\'" buffer-file-name)
                                         (dockspec)))))
