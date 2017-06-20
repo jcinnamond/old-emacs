@@ -795,6 +795,14 @@ Manage docker instances and images from emacs too.
     :init (docker-global-mode))
 #+END_SRC
 
+* REST client
+
+Who needs curl when you can do all the queries from emacs.
+
+#+BEGIN_SRC emacs-list
+  (use-package restclient)
+#+END_SRC
+
 * All the little things
 
 Auto compile elisp-files
