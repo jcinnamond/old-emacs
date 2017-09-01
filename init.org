@@ -158,9 +158,10 @@ Add a visible marker at column 80.
     (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
     (global-fci-mode 1)
     :config
-    (setq fci-rule-column 80)
-    (setq fci-rule-width 3)
-    (setq fci-rule-use-dashes 't))
+    (setq fci-rule-column 120)
+    (setq fci-rule-width 1)
+    (setq fci-rule-color "#81A1C1")
+    (setq fci-rule-use-dashes nil))
 #+END_SRC
 
 * Spell checking
