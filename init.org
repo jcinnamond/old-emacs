@@ -298,6 +298,8 @@ Use swap-buffers to swap between windows.
     ("C-c b" . swap-buffers))
 #+END_SRC
 
+* Purpose
+
 Use purpose to keep types of buffer in the same buffer.
 
 #+BEGIN_SRC emacs-lisp
@@ -307,12 +309,12 @@ Use purpose to keep types of buffer in the same buffer.
     :config
     (add-to-list 'purpose-user-regexp-purposes '("_spec.rb\\(<.*>\\)?$" . test))
     (add-to-list 'purpose-user-mode-purposes '(ruby-mode . edit))
-    (add-to-list 'purpose-user-mode-purposes '(yaml-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(emacs-lisp-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(org-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(web-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(html-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(scss-mode . test))
+    (add-to-list 'purpose-user-mode-purposes '(yaml-mode . test))
     (add-to-list 'purpose-user-mode-purposes '(css-mode . test))
     (add-to-list 'purpose-user-mode-purposes '(javascript-mode . edit))
     (add-to-list 'purpose-user-mode-purposes '(magit-mode . tr))
@@ -628,7 +630,8 @@ automatically assign instance variables.
   (use-package jc-ruby-extra
     :bind (:map ruby-mode-map
                 ("C-c @" . jc-ruby-instance-variables)
-                ("C-<tab>" . jc-align-hash)))
+                ("C-<tab>" . jc-align-hash)
+                ("C-c >" . jc-align-requests)))
 #+END_SRC
 
 Use web-mode to handle .html.erb files. Its indentation doesn't play
@@ -637,6 +640,8 @@ well with fci-mode.
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
     :init (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    :bind (:map web-mode-map
+                ("C-c , r" . dockspec-rerun))
     :config
     (add-hook 'web-mode-hook (lambda ()
                                (turn-off-fci-mode)
@@ -836,6 +841,12 @@ emacs. Always vertically split so changes are side by side.
     :config
     (setq ediff-window-setup-function 'ediff-setup-windows-plain)
     (set-variable 'ediff-split-window-function 'split-window-horizontally))
+#+END_SRC
+
+My fat fingers keep hitting C-x C-c by mistake.
+
+#+BEGIN_SRC emacs-lisp
+  (setq confirm-kill-emacs 'y-or-n-p)
 #+END_SRC
 
 Other things to split out
