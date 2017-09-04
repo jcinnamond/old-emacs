@@ -202,12 +202,6 @@ Don't create lockfiles in the current directory.
   (setq create-lockfiles nil)
 #+END_SRC
 
-Rename the file and buffer without having to do a dired shuffle.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package buffer-file-utils)
-#+END_SRC
-
 * Selection
 
 Allow narrowing.
@@ -678,7 +672,7 @@ Some people use coffeescript, so let's support that too.
 Indentation for css mode applies to scss mode too
 
 #+BEGIN_SRC emacs-lisp
-  (use-package scss
+  (use-package scss-mode
     :init
     (setq css-indent-offset 2))
 #+END_SRC
@@ -792,13 +786,6 @@ A mode to edit dockerfiles
 
 #+BEGIN_SRC emacs-lisp
   (use-package dockerfile-mode)
-#+END_SRC
-
-Manage docker instances and images from emacs too.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package docker
-    :init (docker-global-mode))
 #+END_SRC
 
 * REST client
