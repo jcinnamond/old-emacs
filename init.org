@@ -73,9 +73,9 @@ Set the default font.
 
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'default nil
-                      :family "InputMono"
+                      :family "InputSans"
+                      :weight 'normal
                       :height 120)
-
 #+END_SRC
 
 I like to strip back the UI and use a low contrast dark theme.
@@ -86,27 +86,14 @@ I like to strip back the UI and use a low contrast dark theme.
   (menu-bar-mode 0)
   (scroll-bar-mode 0)
 
-  (load-theme 'nord t)
-#+END_SRC
-
-I find comments hard to read with the nord, so I override the comment
-face to make it more readable. I also make the vertical border a bit
-easier to see.
-
-#+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'font-lock-comment-face nil
-                      :foreground "#81A1C1") ; nord9
-  (set-face-attribute 'vertical-border nil
-                      :foreground "#EBCB8B") ; nord13
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+  (load-theme 'occasional t)
 #+END_SRC
 
 It's useful to highlight the matching parens, especially when writing elisp.
 
 #+BEGIN_SRC emacs-lisp
   (show-paren-mode 1)
-  (set-face-background 'show-paren-match (face-background 'default))
-  (set-face-foreground 'show-paren-match "#d44")
-  (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 #+END_SRC
 
 ** Mode line
@@ -148,20 +135,6 @@ I like to make whitespace obvious.
   (set-face-background 'whitespace-line "#544")
   (set-face-foreground 'whitespace-line "#ddd")
   (add-hook 'before-save-hook 'whitespace-cleanup)
-#+END_SRC
-
-Add a visible marker at column 80.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package fill-column-indicator
-    :init
-    (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-    (global-fci-mode 1)
-    :config
-    (setq fci-rule-column 120)
-    (setq fci-rule-width 1)
-    (setq fci-rule-color "#81A1C1")
-    (setq fci-rule-use-dashes nil))
 #+END_SRC
 
 * Spell checking
