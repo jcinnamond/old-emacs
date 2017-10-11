@@ -720,6 +720,7 @@ Use dante https://github.com/jyp/dante for a better haskell experience.
 
 * Snippets
 
+
 Use yasnippets everywhere, but I don't want the default snippets.
 
 #+BEGIN_SRC emacs-lisp
@@ -729,7 +730,8 @@ Use yasnippets everywhere, but I don't want the default snippets.
     (setq yas-snippet-dirs '("~/git/snippets"))
     (yas-global-mode 't)
     :config
-    (setq yas-verbosity 0))
+    (setq yas-verbosity 0)
+    (add-hook 'prog-mode-hook #'yas-minor-mode))
 #+END_SRC
 
 * el-presenti
