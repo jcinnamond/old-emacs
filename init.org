@@ -602,8 +602,7 @@ automatically assign instance variables.
                 ("C-c >" . jc-align-requests)))
 #+END_SRC
 
-Use web-mode to handle .html.erb files. Its indentation doesn't play
-well with fci-mode.
+Use web-mode to handle .html.erb files.
 
 #+BEGIN_SRC emacs-lisp
   (use-package web-mode
@@ -612,7 +611,6 @@ well with fci-mode.
                 ("C-#" . dockspec-rerun))
     :config
     (add-hook 'web-mode-hook (lambda ()
-                               (turn-off-fci-mode)
                                (flyspell-mode 1)
                                (setq indent-tabs-mode nil))))
 #+END_SRC
