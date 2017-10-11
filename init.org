@@ -571,7 +571,7 @@ Configure ruby mode.
 #+BEGIN_SRC emacs-lisp
   (use-package ruby-mode
     :bind (:map ruby-mode-map
-                ("C-c , r" . dockspec-rerun))
+                ("C-#" . dockspec-rerun))
     :config
     (add-hook 'ruby-mode-hook (lambda ()
                                 (setq ruby-align-chained-calls t)
@@ -609,7 +609,7 @@ well with fci-mode.
   (use-package web-mode
     :init (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
     :bind (:map web-mode-map
-                ("C-c , r" . dockspec-rerun))
+                ("C-#" . dockspec-rerun))
     :config
     (add-hook 'web-mode-hook (lambda ()
                                (turn-off-fci-mode)
